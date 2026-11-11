@@ -1,0 +1,929 @@
+{
+ "synthetic": true,
+ "note": "Fictional titles for prototyping only.",
+ "titles": [
+  {
+   "id": "T01",
+   "title": "Last Minute Derby",
+   "genres": [
+    "sports drama",
+    "thriller"
+   ],
+   "themes": [
+    "rivalries",
+    "last-minute wins",
+    "star players"
+   ],
+   "tone": "energetic",
+   "rating": "PG-13",
+   "runtime_min": 112,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "de",
+    "pt"
+   ],
+   "family_safe": true,
+   "synopsis": "Un delantero veterano se juega la carrera en el derby que decide la liga, con un gol en el último minuto."
+  },
+  {
+   "id": "T02",
+   "title": "The Winter Ledger",
+   "genres": [
+    "drama",
+    "thriller"
+   ],
+   "themes": [
+    "character arcs",
+    "cliffhangers",
+    "ensemble casts"
+   ],
+   "tone": "dark",
+   "rating": "R",
+   "runtime_min": 128,
+   "audio_languages": [
+    "en"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "Una contable descubre en un pueblo nevado un libro de cuentas que une a media docena de secretos familiares."
+  },
+  {
+   "id": "T03",
+   "title": "Paper Lanterns",
+   "genres": [
+    "animation",
+    "family",
+    "adventure"
+   ],
+   "themes": [
+    "friendship",
+    "courage",
+    "family bonds"
+   ],
+   "tone": "warm",
+   "rating": "G",
+   "runtime_min": 94,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "pt"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "ja"
+   ],
+   "family_safe": true,
+   "synopsis": "Dos hermanos siguen farolillos de papel por un bosque encantado para devolver la luz a su pueblo."
+  },
+  {
+   "id": "T04",
+   "title": "Neon Sprint",
+   "genres": [
+    "action",
+    "sci-fi"
+   ],
+   "themes": [
+    "chases",
+    "underdogs",
+    "technology"
+   ],
+   "tone": "energetic",
+   "rating": "PG-13",
+   "runtime_min": 104,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "Una mensajera ciclista cruza una ciudad futurista en una noche, perseguida por drones, para entregar un paquete."
+  },
+  {
+   "id": "T05",
+   "title": "Quiet Harbor",
+   "genres": [
+    "drama",
+    "romance"
+   ],
+   "themes": [
+    "love",
+    "second chances",
+    "family"
+   ],
+   "tone": "warm",
+   "rating": "PG",
+   "runtime_min": 109,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": true,
+   "synopsis": "Una pescadora viuda y un arquitecto recién llegado reconstruyen juntos el faro de un puerto olvidado."
+  },
+  {
+   "id": "T06",
+   "title": "Ashes of the Cartel",
+   "genres": [
+    "crime",
+    "thriller"
+   ],
+   "themes": [
+    "betrayal",
+    "power",
+    "moral gray areas"
+   ],
+   "tone": "dark",
+   "rating": "R",
+   "runtime_min": 136,
+   "audio_languages": [
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "de"
+   ],
+   "family_safe": false,
+   "synopsis": "Un contador del narco intenta salir con vida y con su familia antes de la gran traición."
+  },
+  {
+   "id": "T07",
+   "title": "The Final Whistle: A Documentary",
+   "genres": [
+    "sports documentary"
+   ],
+   "themes": [
+    "rivalries",
+    "title races",
+    "star players"
+   ],
+   "tone": "inspiring",
+   "rating": "PG",
+   "runtime_min": 98,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "de",
+    "pt",
+    "fr"
+   ],
+   "family_safe": true,
+   "synopsis": "Tres temporadas dentro de un vestuario que luchó por el título hasta la última jornada."
+  },
+  {
+   "id": "T08",
+   "title": "Midnight in Seoul",
+   "genres": [
+    "romance",
+    "K-drama",
+    "thriller"
+   ],
+   "themes": [
+    "love",
+    "secrets",
+    "ensemble casts"
+   ],
+   "tone": "premium",
+   "rating": "PG-13",
+   "runtime_min": 121,
+   "audio_languages": [
+    "ko"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "Una traductora y un chef rival descubren que sus encuentros nocturnos esconden un secreto compartido."
+  },
+  {
+   "id": "T09",
+   "title": "Signal Lost",
+   "genres": [
+    "sci-fi",
+    "thriller"
+   ],
+   "themes": [
+    "isolation",
+    "technology",
+    "mystery"
+   ],
+   "tone": "dark",
+   "rating": "PG-13",
+   "runtime_min": 117,
+   "audio_languages": [
+    "en",
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "de",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "La tripulación de una estación polar pierde contacto con el mundo y algo responde a su última señal."
+  },
+  {
+   "id": "T10",
+   "title": "Courage on the Court",
+   "genres": [
+    "sports drama",
+    "family"
+   ],
+   "themes": [
+    "underdogs",
+    "teamwork",
+    "family bonds"
+   ],
+   "tone": "inspiring",
+   "rating": "PG",
+   "runtime_min": 106,
+   "audio_languages": [
+    "en",
+    "es",
+    "pt"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "fr"
+   ],
+   "family_safe": true,
+   "synopsis": "Un equipo juvenil de baloncesto sin recursos se prepara para la final con su entrenadora improvisada."
+  },
+  {
+   "id": "T11",
+   "title": "The Archive Files",
+   "genres": [
+    "documentary",
+    "history"
+   ],
+   "themes": [
+    "true stories",
+    "investigation",
+    "society"
+   ],
+   "tone": "factual",
+   "rating": "PG",
+   "runtime_min": 92,
+   "audio_languages": [
+    "en"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": true,
+   "synopsis": "Periodistas reabren un caso olvidado a partir de archivos desclasificados."
+  },
+  {
+   "id": "T12",
+   "title": "A Quiet Frame",
+   "genres": [
+    "arthouse",
+    "drama"
+   ],
+   "themes": [
+    "memory",
+    "loss",
+    "auteur cinema"
+   ],
+   "tone": "premium",
+   "rating": "R",
+   "runtime_min": 141,
+   "audio_languages": [
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "de",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "Un fotógrafo ciego de nacimiento intenta recordar el último verano con su padre a través de sonidos."
+  },
+  {
+   "id": "T13",
+   "title": "Chase the Sun",
+   "genres": [
+    "action",
+    "adventure",
+    "comedy"
+   ],
+   "themes": [
+    "road trip",
+    "friendship",
+    "chases"
+   ],
+   "tone": "playful",
+   "rating": "PG-13",
+   "runtime_min": 101,
+   "audio_languages": [
+    "en",
+    "es",
+    "pt",
+    "de"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "de",
+    "fr"
+   ],
+   "family_safe": true,
+   "synopsis": "Tres amigos cruzan el desierto en una furgoneta robada para llegar a un festival antes del amanecer."
+  },
+  {
+   "id": "T14",
+   "title": "The Understudy",
+   "genres": [
+    "comedy",
+    "drama"
+   ],
+   "themes": [
+    "underdogs",
+    "ambition",
+    "second chances"
+   ],
+   "tone": "playful",
+   "rating": "PG-13",
+   "runtime_min": 99,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": true,
+   "synopsis": "La suplente de una gran estrella del teatro tiene una sola noche para demostrar su talento."
+  },
+  {
+   "id": "T15",
+   "title": "Hollow Hill",
+   "genres": [
+    "horror",
+    "mystery"
+   ],
+   "themes": [
+    "haunting",
+    "family secrets",
+    "isolation"
+   ],
+   "tone": "dark",
+   "rating": "R",
+   "runtime_min": 103,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": false,
+   "synopsis": "Una familia se muda a una casa en una colina donde cada noche desaparece un objeto distinto."
+  },
+  {
+   "id": "T16",
+   "title": "Dust & Thunder",
+   "genres": [
+    "western",
+    "action"
+   ],
+   "themes": [
+    "revenge",
+    "honor",
+    "frontier"
+   ],
+   "tone": "gritty",
+   "rating": "PG-13",
+   "runtime_min": 118,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "de"
+   ],
+   "family_safe": false,
+   "synopsis": "Un exsheriff cruza el desierto para detener a una banda antes de que llegue al pueblo."
+  },
+  {
+   "id": "T17",
+   "title": "Stage Lights",
+   "genres": [
+    "musical",
+    "romance"
+   ],
+   "themes": [
+    "ambition",
+    "love",
+    "music"
+   ],
+   "tone": "warm",
+   "rating": "PG",
+   "runtime_min": 110,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "pt"
+   ],
+   "family_safe": true,
+   "synopsis": "Dos jóvenes compositores montan un musical en un teatro a punto de cerrar."
+  },
+  {
+   "id": "T18",
+   "title": "Skyward Kids",
+   "genres": [
+    "animation",
+    "adventure",
+    "family"
+   ],
+   "themes": [
+    "friendship",
+    "flight",
+    "courage"
+   ],
+   "tone": "playful",
+   "rating": "G",
+   "runtime_min": 88,
+   "audio_languages": [
+    "en",
+    "es",
+    "pt",
+    "de"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "de",
+    "fr",
+    "ja"
+   ],
+   "family_safe": true,
+   "synopsis": "Un grupo de niños construye un globo para recorrer el mundo y encontrar a la abuela de uno de ellos."
+  },
+  {
+   "id": "T19",
+   "title": "Operation Blackbird",
+   "genres": [
+    "war",
+    "thriller"
+   ],
+   "themes": [
+    "sacrifice",
+    "espionage",
+    "true stories"
+   ],
+   "tone": "serious",
+   "rating": "R",
+   "runtime_min": 132,
+   "audio_languages": [
+    "en",
+    "de"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": false,
+   "synopsis": "Una espía británica infiltrada en Berlín intenta filtrar planes antes de ser descubierta."
+  },
+  {
+   "id": "T20",
+   "title": "The Last Lap",
+   "genres": [
+    "sports documentary",
+    "biopic"
+   ],
+   "themes": [
+    "underdogs",
+    "comebacks",
+    "star players"
+   ],
+   "tone": "inspiring",
+   "rating": "PG",
+   "runtime_min": 96,
+   "audio_languages": [
+    "en",
+    "es",
+    "pt"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "de"
+   ],
+   "family_safe": true,
+   "synopsis": "La vuelta de una piloto veterana tras una lesión grave, contada por ella y su equipo."
+  },
+  {
+   "id": "T21",
+   "title": "Planet Unseen",
+   "genres": [
+    "nature documentary"
+   ],
+   "themes": [
+    "wildlife",
+    "oceans",
+    "wonder"
+   ],
+   "tone": "awe",
+   "rating": "G",
+   "runtime_min": 86,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "ja"
+   ],
+   "family_safe": true,
+   "synopsis": "Un viaje por los ecosistemas menos explorados del planeta, filmado en 8K."
+  },
+  {
+   "id": "T22",
+   "title": "Love in Translation",
+   "genres": [
+    "romcom"
+   ],
+   "themes": [
+    "love",
+    "culture clash",
+    "second chances"
+   ],
+   "tone": "playful",
+   "rating": "PG-13",
+   "runtime_min": 98,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr",
+    "ja"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "ja"
+   ],
+   "family_safe": true,
+   "synopsis": "Una intérprete de conferencias se enamora del delegado al que debe traducir sin delatarse."
+  },
+  {
+   "id": "T23",
+   "title": "Vault 37",
+   "genres": [
+    "heist",
+    "thriller"
+   ],
+   "themes": [
+    "ensemble casts",
+    "betrayal",
+    "technology"
+   ],
+   "tone": "slick",
+   "rating": "PG-13",
+   "runtime_min": 114,
+   "audio_languages": [
+    "en",
+    "es",
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": false,
+   "synopsis": "Un equipo de especialistas planea el golpe a una cámara bancaria durante una noche de eclipse."
+  },
+  {
+   "id": "T24",
+   "title": "Tokyo Drift Diaries",
+   "genres": [
+    "anime",
+    "adventure"
+   ],
+   "themes": [
+    "friendship",
+    "racing",
+    "coming of age"
+   ],
+   "tone": "energetic",
+   "rating": "PG",
+   "runtime_min": 24,
+   "audio_languages": [
+    "ja"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "pt"
+   ],
+   "family_safe": true,
+   "synopsis": "Un grupo de adolescentes de Tokio forma un equipo de carreras de bicicletas en el distrito más denso."
+  },
+  {
+   "id": "T25",
+   "title": "Beyond the Headlines",
+   "genres": [
+    "news documentary",
+    "investigation"
+   ],
+   "themes": [
+    "society",
+    "true stories",
+    "investigation"
+   ],
+   "tone": "factual",
+   "rating": "PG",
+   "runtime_min": 89,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": true,
+   "synopsis": "Un equipo de reporteros sigue una historia local hasta una red internacional de desinformación."
+  },
+  {
+   "id": "T26",
+   "title": "House of Mirrors",
+   "genres": [
+    "thriller",
+    "drama"
+   ],
+   "themes": [
+    "secrets",
+    "betrayal",
+    "ensemble casts"
+   ],
+   "tone": "premium",
+   "rating": "R",
+   "runtime_min": 125,
+   "audio_languages": [
+    "en",
+    "fr"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "de",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "Una subasta de arte reúne a siete herederos y un cuadro que nadie debería haber visto."
+  },
+  {
+   "id": "T27",
+   "title": "Sunday Table",
+   "genres": [
+    "comedy",
+    "family"
+   ],
+   "themes": [
+    "family bonds",
+    "food",
+    "reunion"
+   ],
+   "tone": "warm",
+   "rating": "PG",
+   "runtime_min": 97,
+   "audio_languages": [
+    "en",
+    "es",
+    "pt"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "fr"
+   ],
+   "family_safe": true,
+   "synopsis": "Tres generaciones se reúnen cada domingo y esta vez alguien trae una noticia que lo cambia todo."
+  },
+  {
+   "id": "T28",
+   "title": "Pixel Pals",
+   "genres": [
+    "animation",
+    "comedy"
+   ],
+   "themes": [
+    "friendship",
+    "technology",
+    "adventure"
+   ],
+   "tone": "playful",
+   "rating": "G",
+   "runtime_min": 91,
+   "audio_languages": [
+    "en",
+    "es",
+    "de"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "de",
+    "fr",
+    "pt"
+   ],
+   "family_safe": true,
+   "synopsis": "Los personajes de un videojuego retro escapan al mundo real para salvar su servidor."
+  },
+  {
+   "id": "T29",
+   "title": "Rebel Frequency",
+   "genres": [
+    "biopic",
+    "music"
+   ],
+   "themes": [
+    "comebacks",
+    "music",
+    "rebellion"
+   ],
+   "tone": "inspiring",
+   "rating": "PG-13",
+   "runtime_min": 123,
+   "audio_languages": [
+    "en",
+    "es"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "pt",
+    "fr",
+    "de"
+   ],
+   "family_safe": true,
+   "synopsis": "El ascenso y caída de una radio pirata que cambió la música de una ciudad."
+  },
+  {
+   "id": "T30",
+   "title": "Cold Case Valley",
+   "genres": [
+    "crime",
+    "mystery",
+    "documentary"
+   ],
+   "themes": [
+    "true stories",
+    "investigation",
+    "moral gray areas"
+   ],
+   "tone": "dark",
+   "rating": "PG-13",
+   "runtime_min": 101,
+   "audio_languages": [
+    "en"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "de"
+   ],
+   "family_safe": false,
+   "synopsis": "Un detective retirado reabre el asesinato sin resolver que marcó a su valle."
+  },
+  {
+   "id": "T31",
+   "title": "Voices of the Mountain",
+   "genres": [
+    "drama",
+    "adventure"
+   ],
+   "themes": [
+    "courage",
+    "family bonds",
+    "nature"
+   ],
+   "tone": "inspiring",
+   "rating": "PG",
+   "runtime_min": 115,
+   "audio_languages": [
+    "es",
+    "en"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "pt"
+   ],
+   "family_safe": true,
+   "synopsis": "Un padre y su hija cruzan los Andes a pie para llegar a una boda familiar."
+  },
+  {
+   "id": "T32",
+   "title": "Afterglow",
+   "genres": [
+    "sci-fi",
+    "romance"
+   ],
+   "themes": [
+    "love",
+    "memory",
+    "technology"
+   ],
+   "tone": "premium",
+   "rating": "PG-13",
+   "runtime_min": 112,
+   "audio_languages": [
+    "en",
+    "ko"
+   ],
+   "subtitle_languages": [
+    "en",
+    "es",
+    "fr",
+    "ja"
+   ],
+   "family_safe": false,
+   "synopsis": "Dos extraños comparten recuerdos tras un experimento y deben decidir si quieren conservarlos."
+  }
+ ]
+}

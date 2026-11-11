@@ -1,0 +1,118 @@
+{
+ "1": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Soda can opening with a crisp fizz"
+  },
+  "_meta": {
+   "title": "Sound description"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 4.0
+  },
+  "_meta": {
+   "title": "Seconds"
+  }
+ },
+ "3": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "stable_audio_3_small_sfx.safetensors"
+  }
+ },
+ "4": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "t5gemma_b_b_ul2.safetensors",
+   "type": "stable_audio",
+   "device": "default"
+  }
+ },
+ "5": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "1",
+    0
+   ],
+   "clip": [
+    "4",
+    0
+   ]
+  }
+ },
+ "6": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "music, speech",
+   "clip": [
+    "4",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "EmptyLatentAudio",
+  "inputs": {
+   "seconds": [
+    "2",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "8": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "3",
+    0
+   ],
+   "seed": 10,
+   "steps": 8,
+   "cfg": 1.0,
+   "sampler_name": "lcm",
+   "scheduler": "simple",
+   "positive": [
+    "5",
+    0
+   ],
+   "negative": [
+    "6",
+    0
+   ],
+   "latent_image": [
+    "7",
+    0
+   ],
+   "denoise": 1.0
+  }
+ },
+ "9": {
+  "class_type": "VAEDecodeAudio",
+  "inputs": {
+   "samples": [
+    "8",
+    0
+   ],
+   "vae": [
+    "3",
+    2
+   ]
+  }
+ },
+ "10": {
+  "class_type": "SaveAudioMP3",
+  "inputs": {
+   "audio": [
+    "9",
+    0
+   ],
+   "filename_prefix": "audio/sfx",
+   "quality": "V0"
+  }
+ }
+}

@@ -1,0 +1,721 @@
+{
+ "1": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Friendly professional presenter in their thirties, looking into the camera, bright modern studio, upper body, soft key light"
+  },
+  "_meta": {
+   "title": "Presenter"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Hi, I'm here to tell you about Ridge, the trail shoe that keeps up with you. Light, tough, and ready for your next adventure."
+  },
+  "_meta": {
+   "title": "Script"
+  }
+ },
+ "3": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Friendly, natural, conversational presenter voice"
+  },
+  "_meta": {
+   "title": "Voice style"
+  }
+ },
+ "4": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "remangu-placeholder.png"
+  },
+  "_meta": {
+   "title": "Presenter photo (optional)"
+  }
+ },
+ "5": {
+  "class_type": "PrimitiveBoolean",
+  "inputs": {
+   "value": false
+  },
+  "_meta": {
+   "title": "Use presenter photo"
+  }
+ },
+ "6": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 640
+  },
+  "_meta": {
+   "title": "Video size (square)"
+  }
+ },
+ "7": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "flux-2-klein-4b.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "8": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_3_4b.safetensors",
+   "type": "flux2",
+   "device": "default"
+  }
+ },
+ "9": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  }
+ },
+ "10": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "1",
+    0
+   ],
+   "clip": [
+    "8",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ]
+  }
+ },
+ "12": {
+  "class_type": "CFGGuider",
+  "inputs": {
+   "model": [
+    "7",
+    0
+   ],
+   "positive": [
+    "10",
+    0
+   ],
+   "negative": [
+    "11",
+    0
+   ],
+   "cfg": 1.0
+  }
+ },
+ "13": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": [
+    "6",
+    0
+   ],
+   "height": [
+    "6",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "14": {
+  "class_type": "Flux2Scheduler",
+  "inputs": {
+   "steps": 4,
+   "width": [
+    "6",
+    0
+   ],
+   "height": [
+    "6",
+    0
+   ]
+  }
+ },
+ "15": {
+  "class_type": "KSamplerSelect",
+  "inputs": {
+   "sampler_name": "euler"
+  }
+ },
+ "16": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 404
+  }
+ },
+ "17": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "16",
+    0
+   ],
+   "guider": [
+    "12",
+    0
+   ],
+   "sampler": [
+    "15",
+    0
+   ],
+   "sigmas": [
+    "14",
+    0
+   ],
+   "latent_image": [
+    "13",
+    0
+   ]
+  }
+ },
+ "18": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "17",
+    0
+   ],
+   "vae": [
+    "9",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Generated presenter"
+  }
+ },
+ "19": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "18",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Presenter"
+  }
+ },
+ "20": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "5",
+    0
+   ],
+   "on_true": [
+    "4",
+    0
+   ],
+   "on_false": [
+    "18",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Presenter image"
+  }
+ },
+ "21": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "20",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": [
+    "6",
+    0
+   ],
+   "height": [
+    "6",
+    0
+   ],
+   "crop": "center"
+  }
+ },
+ "22": {
+  "class_type": "FB_Qwen3TTSCustomVoice",
+  "inputs": {
+   "text": [
+    "2",
+    0
+   ],
+   "speaker": "Serena",
+   "model_choice": "1.7B",
+   "device": "auto",
+   "precision": "bf16",
+   "language": "English",
+   "seed": 0,
+   "instruct": [
+    "3",
+    0
+   ],
+   "max_new_tokens": 2048,
+   "top_p": 1.0,
+   "top_k": 50,
+   "temperature": 0.9,
+   "repetition_penalty": 1.05,
+   "attention": "auto",
+   "unload_model_after_generate": true,
+   "custom_model_path": "",
+   "custom_speaker_name": ""
+  },
+  "_meta": {
+   "title": "Voice-over (Qwen3-TTS)"
+  }
+ },
+ "23": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 20
+  },
+  "_meta": {
+   "title": "Steps (20 = full quality)"
+  }
+ },
+ "24": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 77
+  },
+  "_meta": {
+   "title": "Frames per part (77 = 4.8 s)"
+  }
+ },
+ "25": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "wan2.2_s2v_14B_fp8_scaled.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "26": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "25",
+    0
+   ],
+   "shift": 8.0
+  }
+ },
+ "27": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+   "type": "wan",
+   "device": "default"
+  }
+ },
+ "28": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "wan_2.1_vae.safetensors"
+  }
+ },
+ "29": {
+  "class_type": "AudioEncoderLoader",
+  "inputs": {
+   "audio_encoder_name": "wav2vec2_large_english_fp16.safetensors"
+  }
+ },
+ "30": {
+  "class_type": "AudioEncoderEncode",
+  "inputs": {
+   "audio_encoder": [
+    "29",
+    0
+   ],
+   "audio": [
+    "22",
+    0
+   ]
+  }
+ },
+ "31": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "1",
+    0
+   ],
+   "string_b": "speaking naturally to the camera",
+   "delimiter": ". "
+  }
+ },
+ "32": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "31",
+    0
+   ],
+   "clip": [
+    "27",
+    0
+   ]
+  }
+ },
+ "33": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走",
+   "clip": [
+    "27",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Negative prompt (Wan default)"
+  }
+ },
+ "34": {
+  "class_type": "WanSoundImageToVideo",
+  "inputs": {
+   "positive": [
+    "32",
+    0
+   ],
+   "negative": [
+    "33",
+    0
+   ],
+   "vae": [
+    "28",
+    0
+   ],
+   "width": [
+    "6",
+    0
+   ],
+   "height": [
+    "6",
+    0
+   ],
+   "length": [
+    "24",
+    0
+   ],
+   "batch_size": 1,
+   "audio_encoder_output": [
+    "30",
+    0
+   ],
+   "ref_image": [
+    "21",
+    0
+   ]
+  }
+ },
+ "35": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "26",
+    0
+   ],
+   "seed": 505,
+   "steps": [
+    "23",
+    0
+   ],
+   "cfg": 6.0,
+   "sampler_name": "uni_pc",
+   "scheduler": "simple",
+   "positive": [
+    "34",
+    0
+   ],
+   "negative": [
+    "34",
+    1
+   ],
+   "latent_image": [
+    "34",
+    2
+   ],
+   "denoise": 1.0
+  }
+ },
+ "36": {
+  "class_type": "WanSoundImageToVideoExtend",
+  "inputs": {
+   "positive": [
+    "32",
+    0
+   ],
+   "negative": [
+    "33",
+    0
+   ],
+   "vae": [
+    "28",
+    0
+   ],
+   "length": [
+    "24",
+    0
+   ],
+   "video_latent": [
+    "35",
+    0
+   ],
+   "audio_encoder_output": [
+    "30",
+    0
+   ],
+   "ref_image": [
+    "21",
+    0
+   ]
+  }
+ },
+ "37": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "26",
+    0
+   ],
+   "seed": 606,
+   "steps": [
+    "23",
+    0
+   ],
+   "cfg": 6.0,
+   "sampler_name": "uni_pc",
+   "scheduler": "simple",
+   "positive": [
+    "36",
+    0
+   ],
+   "negative": [
+    "36",
+    1
+   ],
+   "latent_image": [
+    "36",
+    2
+   ],
+   "denoise": 1.0
+  }
+ },
+ "38": {
+  "class_type": "LatentConcat",
+  "inputs": {
+   "samples1": [
+    "35",
+    0
+   ],
+   "samples2": [
+    "37",
+    0
+   ],
+   "dim": "t"
+  }
+ },
+ "39": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "38",
+    0
+   ],
+   "vae": [
+    "28",
+    0
+   ]
+  }
+ },
+ "40": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 9.6
+  },
+  "_meta": {
+   "title": "Length (seconds)"
+  }
+ },
+ "41": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "1",
+    0
+   ],
+   "string_b": "subtle corporate background music, no vocals",
+   "delimiter": ". "
+  }
+ },
+ "42": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "stable_audio_3_medium.safetensors"
+  }
+ },
+ "43": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "t5gemma_b_b_ul2.safetensors",
+   "type": "stable_audio",
+   "device": "default"
+  }
+ },
+ "44": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "41",
+    0
+   ],
+   "clip": [
+    "43",
+    0
+   ]
+  }
+ },
+ "45": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "vocals, singing, speech, distortion, noise",
+   "clip": [
+    "43",
+    0
+   ]
+  }
+ },
+ "46": {
+  "class_type": "EmptyLatentAudio",
+  "inputs": {
+   "seconds": [
+    "40",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "47": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "42",
+    0
+   ],
+   "seed": 8,
+   "steps": 8,
+   "cfg": 1.0,
+   "sampler_name": "lcm",
+   "scheduler": "simple",
+   "positive": [
+    "44",
+    0
+   ],
+   "negative": [
+    "45",
+    0
+   ],
+   "latent_image": [
+    "46",
+    0
+   ],
+   "denoise": 1.0
+  }
+ },
+ "48": {
+  "class_type": "VAEDecodeAudio",
+  "inputs": {
+   "samples": [
+    "47",
+    0
+   ],
+   "vae": [
+    "42",
+    2
+   ]
+  }
+ },
+ "49": {
+  "class_type": "AudioAdjustVolume",
+  "inputs": {
+   "audio": [
+    "48",
+    0
+   ],
+   "volume": -12
+  },
+  "_meta": {
+   "title": "Music volume (dB)"
+  }
+ },
+ "50": {
+  "class_type": "AudioMerge",
+  "inputs": {
+   "audio1": [
+    "49",
+    0
+   ],
+   "audio2": [
+    "22",
+    0
+   ],
+   "merge_method": "add"
+  }
+ },
+ "51": {
+  "class_type": "TrimAudioDuration",
+  "inputs": {
+   "audio": [
+    "50",
+    0
+   ],
+   "start_index": 0.0,
+   "duration": [
+    "40",
+    0
+   ]
+  }
+ },
+ "52": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "39",
+    0
+   ],
+   "fps": 16.0,
+   "bit_depth": "auto",
+   "color_space": "sRGB",
+   "codec": "none",
+   "audio": [
+    "51",
+    0
+   ]
+  }
+ },
+ "53": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "52",
+    0
+   ],
+   "filename_prefix": "ads/spokesperson",
+   "format": "auto",
+   "codec": "auto",
+   "format.codec": "auto"
+  }
+ }
+}

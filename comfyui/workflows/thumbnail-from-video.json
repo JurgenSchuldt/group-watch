@@ -1,0 +1,297 @@
+{
+ "1": {
+  "class_type": "LoadVideo",
+  "inputs": {
+   "file": "remangu-sample-video.mp4"
+  },
+  "_meta": {
+   "title": "Source video"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 1.0
+  },
+  "_meta": {
+   "title": "Moment (seconds)"
+  }
+ },
+ "3": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Turn this frame into a bold, eye-catching social media thumbnail: vivid colours, dramatic light, clear focal point. Keep the subject exactly as it is, including any label or logo on it. Leave the top third as calm, empty background. Do not add any new text or lettering."
+  },
+  "_meta": {
+   "title": "Thumbnail style"
+  }
+ },
+ "4": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 1280
+  },
+  "_meta": {
+   "title": "Width"
+  }
+ },
+ "5": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 720
+  },
+  "_meta": {
+   "title": "Height"
+  }
+ },
+ "6": {
+  "class_type": "Video Slice",
+  "inputs": {
+   "video": [
+    "1",
+    0
+   ],
+   "start_time": [
+    "2",
+    0
+   ],
+   "duration": 0.25,
+   "strict_duration": false
+  }
+ },
+ "7": {
+  "class_type": "GetVideoComponents",
+  "inputs": {
+   "video": [
+    "6",
+    0
+   ]
+  }
+ },
+ "8": {
+  "class_type": "ImageFromBatch",
+  "inputs": {
+   "image": [
+    "7",
+    0
+   ],
+   "batch_index": 0,
+   "length": 1
+  },
+  "_meta": {
+   "title": "Source frame"
+  }
+ },
+ "9": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "8",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Source frame"
+  }
+ },
+ "10": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "flux-2-klein-4b.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "11": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_3_4b.safetensors",
+   "type": "flux2",
+   "device": "default"
+  }
+ },
+ "12": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  }
+ },
+ "13": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "3",
+    0
+   ],
+   "clip": [
+    "11",
+    0
+   ]
+  }
+ },
+ "14": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "13",
+    0
+   ]
+  }
+ },
+ "15": {
+  "class_type": "ImageScaleToTotalPixels",
+  "inputs": {
+   "image": [
+    "8",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "megapixels": 1.0,
+   "resolution_steps": 16
+  }
+ },
+ "16": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "15",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  }
+ },
+ "17": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "13",
+    0
+   ],
+   "latent": [
+    "16",
+    0
+   ]
+  }
+ },
+ "18": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "14",
+    0
+   ],
+   "latent": [
+    "16",
+    0
+   ]
+  }
+ },
+ "19": {
+  "class_type": "CFGGuider",
+  "inputs": {
+   "model": [
+    "10",
+    0
+   ],
+   "positive": [
+    "17",
+    0
+   ],
+   "negative": [
+    "18",
+    0
+   ],
+   "cfg": 1.0
+  }
+ },
+ "20": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": [
+    "4",
+    0
+   ],
+   "height": [
+    "5",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "21": {
+  "class_type": "Flux2Scheduler",
+  "inputs": {
+   "steps": 4,
+   "width": [
+    "4",
+    0
+   ],
+   "height": [
+    "5",
+    0
+   ]
+  }
+ },
+ "22": {
+  "class_type": "KSamplerSelect",
+  "inputs": {
+   "sampler_name": "euler"
+  }
+ },
+ "23": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 77
+  }
+ },
+ "24": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "23",
+    0
+   ],
+   "guider": [
+    "19",
+    0
+   ],
+   "sampler": [
+    "22",
+    0
+   ],
+   "sigmas": [
+    "21",
+    0
+   ],
+   "latent_image": [
+    "20",
+    0
+   ]
+  }
+ },
+ "25": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "24",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  }
+ },
+ "26": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "25",
+    0
+   ],
+   "filename_prefix": "social/thumbnail"
+  }
+ }
+}

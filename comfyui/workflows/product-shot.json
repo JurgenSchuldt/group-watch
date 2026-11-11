@@ -1,0 +1,281 @@
+{
+ "1": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "A glass bottle of cold brew coffee on a marble counter, morning light, premium product photography"
+  },
+  "_meta": {
+   "title": "Prompt"
+  }
+ },
+ "2": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "remangu-placeholder.png"
+  },
+  "_meta": {
+   "title": "Product photo (optional)"
+  }
+ },
+ "3": {
+  "class_type": "PrimitiveBoolean",
+  "inputs": {
+   "value": false
+  },
+  "_meta": {
+   "title": "Use product photo"
+  }
+ },
+ "4": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 1024
+  },
+  "_meta": {
+   "title": "Width"
+  }
+ },
+ "5": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 1024
+  },
+  "_meta": {
+   "title": "Height"
+  }
+ },
+ "6": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "flux-2-klein-4b.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "7": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_3_4b.safetensors",
+   "type": "flux2",
+   "device": "default"
+  }
+ },
+ "8": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  }
+ },
+ "9": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "1",
+    0
+   ],
+   "clip": [
+    "7",
+    0
+   ]
+  }
+ },
+ "10": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "9",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "ImageScaleToTotalPixels",
+  "inputs": {
+   "image": [
+    "2",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "megapixels": 1.0,
+   "resolution_steps": 16
+  }
+ },
+ "12": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "11",
+    0
+   ],
+   "vae": [
+    "8",
+    0
+   ]
+  }
+ },
+ "13": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "9",
+    0
+   ],
+   "latent": [
+    "12",
+    0
+   ]
+  }
+ },
+ "14": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "3",
+    0
+   ],
+   "on_true": [
+    "13",
+    0
+   ],
+   "on_false": [
+    "9",
+    0
+   ]
+  }
+ },
+ "15": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "10",
+    0
+   ],
+   "latent": [
+    "12",
+    0
+   ]
+  }
+ },
+ "16": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "3",
+    0
+   ],
+   "on_true": [
+    "15",
+    0
+   ],
+   "on_false": [
+    "10",
+    0
+   ]
+  }
+ },
+ "17": {
+  "class_type": "CFGGuider",
+  "inputs": {
+   "model": [
+    "6",
+    0
+   ],
+   "positive": [
+    "14",
+    0
+   ],
+   "negative": [
+    "16",
+    0
+   ],
+   "cfg": 1.0
+  }
+ },
+ "18": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": [
+    "4",
+    0
+   ],
+   "height": [
+    "5",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "19": {
+  "class_type": "Flux2Scheduler",
+  "inputs": {
+   "steps": 4,
+   "width": [
+    "4",
+    0
+   ],
+   "height": [
+    "5",
+    0
+   ]
+  }
+ },
+ "20": {
+  "class_type": "KSamplerSelect",
+  "inputs": {
+   "sampler_name": "euler"
+  }
+ },
+ "21": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 42
+  }
+ },
+ "22": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "21",
+    0
+   ],
+   "guider": [
+    "17",
+    0
+   ],
+   "sampler": [
+    "20",
+    0
+   ],
+   "sigmas": [
+    "19",
+    0
+   ],
+   "latent_image": [
+    "18",
+    0
+   ]
+  }
+ },
+ "23": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "22",
+    0
+   ],
+   "vae": [
+    "8",
+    0
+   ]
+  }
+ },
+ "24": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "23",
+    0
+   ],
+   "filename_prefix": "product-shot"
+  }
+ }
+}

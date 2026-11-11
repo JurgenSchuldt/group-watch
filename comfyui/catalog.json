@@ -1,0 +1,703 @@
+{
+ "workflows": [
+  {
+   "slug": "ad-multishot",
+   "title": "Ad generator",
+   "track": "ad",
+   "summary": "Brief (and optional product photo) in, a 10-second ad with key visuals, motion, voice-over and music out.",
+   "ui_path": "workflows/ui/ad-multishot.json",
+   "api_path": "workflows/api/ad-multishot.json",
+   "inputs": {
+    "brief": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "A lightweight trail running shoe for weekend explorers. Energetic, sunny, mountain trails at sunrise",
+     "description": "One line: product, audience, mood"
+    },
+    "script": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": "Meet Ridge. Light enough for every summit, tough enough for every trail. Your weekend starts the moment you lace up.",
+     "description": "Voice-over text, about 25 words for 10 seconds"
+    },
+    "voice_style": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": "Warm, confident, upbeat commercial voice-over, medium pace",
+     "description": "How the voice should sound"
+    },
+    "use_voice": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": true,
+     "description": "false for music only (script may then be empty)"
+    },
+    "product_photo": {
+     "node_id": "5",
+     "input_name": "image",
+     "default": "remangu-placeholder.png",
+     "description": "Uploaded image name (POST /upload/image)"
+    },
+    "use_product_photo": {
+     "node_id": "6",
+     "input_name": "value",
+     "default": false,
+     "description": "true to place the uploaded product into every shot"
+    },
+    "width": {
+     "node_id": "7",
+     "input_name": "value",
+     "default": 1280,
+     "description": "Video width, multiple of 16"
+    },
+    "height": {
+     "node_id": "8",
+     "input_name": "value",
+     "default": 720,
+     "description": "Video height, multiple of 16"
+    },
+    "frames_per_move": {
+     "node_id": "58",
+     "input_name": "value",
+     "default": 81,
+     "description": "Frames per camera move, 4n+1 (81 = 5 s at 16 fps)"
+    },
+    "seconds": {
+     "node_id": "82",
+     "input_name": "value",
+     "default": 10.0,
+     "description": "Length of the soundtrack in seconds"
+    }
+   },
+   "expected_seconds": 300,
+   "smoke_overrides": {
+    "width": 320,
+    "height": 192,
+    "frames_per_move": 9,
+    "seconds": 1.0,
+    "script": "Hello."
+   },
+   "challenge": "Advertisement video"
+  },
+  {
+   "slug": "ad-spokesperson",
+   "title": "Spokesperson ad",
+   "track": "ad",
+   "summary": "A presenter, generated or uploaded, speaks your script with lip-sync, over quiet music.",
+   "ui_path": "workflows/ui/ad-spokesperson.json",
+   "api_path": "workflows/api/ad-spokesperson.json",
+   "inputs": {
+    "presenter": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "Friendly professional presenter in their thirties, looking into the camera, bright modern studio, upper body, soft key light",
+     "description": "Who is speaking and where"
+    },
+    "script": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": "Hi, I'm here to tell you about Ridge, the trail shoe that keeps up with you. Light, tough, and ready for your next adventure.",
+     "description": "What the presenter says, under about 25 words"
+    },
+    "voice_style": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": "Friendly, natural, conversational presenter voice",
+     "description": "How the voice should sound"
+    },
+    "presenter_photo": {
+     "node_id": "4",
+     "input_name": "image",
+     "default": "remangu-placeholder.png",
+     "description": "Uploaded image name (POST /upload/image)"
+    },
+    "use_presenter_photo": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": false,
+     "description": "true to animate the uploaded photo"
+    },
+    "size": {
+     "node_id": "6",
+     "input_name": "value",
+     "default": 640,
+     "description": "Square video size, multiple of 16"
+    },
+    "steps": {
+     "node_id": "23",
+     "input_name": "value",
+     "default": 20,
+     "description": "Sampler steps per part (20 full quality, 10 draft)"
+    },
+    "segment_frames": {
+     "node_id": "24",
+     "input_name": "value",
+     "default": 77,
+     "description": "Frames per part, 4n+1 (77 = 4.8 s at 16 fps)"
+    },
+    "seconds": {
+     "node_id": "40",
+     "input_name": "value",
+     "default": 9.6,
+     "description": "Length of the soundtrack in seconds"
+    }
+   },
+   "expected_seconds": 600,
+   "smoke_overrides": {
+    "script": "Hello.",
+    "size": 320,
+    "steps": 2,
+    "segment_frames": 13,
+    "seconds": 1.0
+   },
+   "challenge": "Advertisement video"
+  },
+  {
+   "slug": "promo-from-video",
+   "title": "Promo from your footage",
+   "track": "ad",
+   "summary": "Three moments of your video become a 10-second animated promo with voice-over and music.",
+   "ui_path": "workflows/ui/promo-from-video.json",
+   "api_path": "workflows/api/promo-from-video.json",
+   "inputs": {
+    "video": {
+     "node_id": "1",
+     "input_name": "file",
+     "default": "remangu-sample-video.mp4",
+     "description": "Uploaded video name (POST /upload/image works for video too)"
+    },
+    "moment_1": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": 0.5,
+     "description": "Seconds from the start for key frame 1"
+    },
+    "moment_2": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": 2.5,
+     "description": "Seconds from the start for key frame 2"
+    },
+    "moment_3": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": 5.0,
+     "description": "Seconds from the start for key frame 3"
+    },
+    "brief": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": "A premium cold brew coffee, from a calm morning kitchen to a sunny day out. Fresh, upbeat",
+     "description": "What the promo is about and its mood"
+    },
+    "script": {
+     "node_id": "6",
+     "input_name": "value",
+     "default": "Cold brew, made slow. From your first sip at home to every sunny afternoon. Take it with you.",
+     "description": "Voice-over text, about 25 words for 10 seconds"
+    },
+    "voice_style": {
+     "node_id": "7",
+     "input_name": "value",
+     "default": "Warm, confident, upbeat commercial voice-over, medium pace",
+     "description": "How the voice should sound"
+    },
+    "use_voice": {
+     "node_id": "8",
+     "input_name": "value",
+     "default": true,
+     "description": "false for music only"
+    },
+    "width": {
+     "node_id": "9",
+     "input_name": "value",
+     "default": 1280,
+     "description": "Video width, multiple of 16 (720 x 1280 for vertical)"
+    },
+    "height": {
+     "node_id": "10",
+     "input_name": "value",
+     "default": 720,
+     "description": "Video height, multiple of 16"
+    },
+    "frames_per_move": {
+     "node_id": "26",
+     "input_name": "value",
+     "default": 81,
+     "description": "Frames per camera move, 4n+1 (81 = 5 s at 16 fps)"
+    },
+    "seconds": {
+     "node_id": "50",
+     "input_name": "value",
+     "default": 10.0,
+     "description": "Length of the soundtrack in seconds"
+    }
+   },
+   "expected_seconds": 300,
+   "smoke_overrides": {
+    "width": 320,
+    "height": 192,
+    "frames_per_move": 9,
+    "seconds": 1.0,
+    "script": "Hello."
+   },
+   "challenge": "Social highlight & promo"
+  },
+  {
+   "slug": "vertical-cut",
+   "title": "Vertical highlight cut",
+   "track": "block",
+   "summary": "A segment of any video, reframed to 9:16 with its sound, ready for social media.",
+   "ui_path": "workflows/ui/vertical-cut.json",
+   "api_path": "workflows/api/vertical-cut.json",
+   "inputs": {
+    "video": {
+     "node_id": "1",
+     "input_name": "file",
+     "default": "remangu-sample-video.mp4",
+     "description": "Uploaded video name"
+    },
+    "start": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": 0.0,
+     "description": "Start of the highlight in seconds"
+    },
+    "duration": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": 0.0,
+     "description": "Length in seconds, 0 = to the end"
+    },
+    "width": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": 720,
+     "description": "Output width (720 for 9:16)"
+    },
+    "height": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": 1280,
+     "description": "Output height (1280 for 9:16)"
+    }
+   },
+   "expected_seconds": 10,
+   "smoke_overrides": {
+    "duration": 1.0,
+    "width": 180,
+    "height": 320
+   },
+   "challenge": "Social highlight & promo"
+  },
+  {
+   "slug": "thumbnail-from-video",
+   "title": "Thumbnail from a video frame",
+   "track": "block",
+   "summary": "The frame at a chosen moment, restyled into a thumbnail that keeps the subject.",
+   "ui_path": "workflows/ui/thumbnail-from-video.json",
+   "api_path": "workflows/api/thumbnail-from-video.json",
+   "inputs": {
+    "video": {
+     "node_id": "1",
+     "input_name": "file",
+     "default": "remangu-sample-video.mp4",
+     "description": "Uploaded video name"
+    },
+    "moment": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": 1.0,
+     "description": "Seconds from the start"
+    },
+    "prompt": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": "Turn this frame into a bold, eye-catching social media thumbnail: vivid colours, dramatic light, clear focal point. Keep the subject exactly as it is, including any label or logo on it. Leave the top third as calm, empty background. Do not add any new text or lettering.",
+     "description": "How the thumbnail should look"
+    },
+    "width": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": 1280,
+     "description": "Width, multiple of 16"
+    },
+    "height": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": 720,
+     "description": "Height, multiple of 16"
+    }
+   },
+   "expected_seconds": 20,
+   "smoke_overrides": {
+    "width": 256,
+    "height": 256
+   },
+   "challenge": "Social highlight & promo"
+  },
+  {
+   "slug": "dub-voice",
+   "title": "Dub in the original voice",
+   "track": "block",
+   "summary": "A translated script spoken in the original speaker's voice, in 10 languages.",
+   "ui_path": "workflows/ui/dub-voice.json",
+   "api_path": "workflows/api/dub-voice.json",
+   "inputs": {
+    "reference_voice": {
+     "node_id": "1",
+     "input_name": "audio",
+     "default": "remangu-reference-voice.wav",
+     "description": "Uploaded audio name (5-15 s of the original speaker)"
+    },
+    "reference_text": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": "Hi, this is a short sample of my voice. The dubbing workflow uses it to speak your script in another language.",
+     "description": "The exact words of the reference recording"
+    },
+    "script": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": "Hola, esta es una breve muestra de mi voz. El flujo de doblaje la usa para decir tu guion en otro idioma.",
+     "description": "The translated text to speak"
+    },
+    "language": {
+     "node_id": "4",
+     "input_name": "language",
+     "default": "Spanish",
+     "description": "English, Chinese, Japanese, Korean, French, German, Spanish, Portuguese, Russian, Italian"
+    }
+   },
+   "expected_seconds": 30,
+   "smoke_overrides": {
+    "script": "Hola."
+   },
+   "challenge": "Localisation & dubbing"
+  },
+  {
+   "slug": "dub-talking-head",
+   "title": "Dubbed talking head",
+   "track": "ad",
+   "summary": "A speaker says your translated script in their own voice, with lip-sync.",
+   "ui_path": "workflows/ui/dub-talking-head.json",
+   "api_path": "workflows/api/dub-talking-head.json",
+   "inputs": {
+    "presenter": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "Friendly professional presenter, looking into the camera, bright modern studio, upper body",
+     "description": "Who is speaking, when no photo is used"
+    },
+    "speaker_photo": {
+     "node_id": "2",
+     "input_name": "image",
+     "default": "remangu-placeholder.png",
+     "description": "Uploaded image name"
+    },
+    "use_speaker_photo": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": false,
+     "description": "true to animate the uploaded photo"
+    },
+    "reference_voice": {
+     "node_id": "4",
+     "input_name": "audio",
+     "default": "remangu-reference-voice.wav",
+     "description": "Uploaded audio name (5-15 s of the speaker)"
+    },
+    "reference_text": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": "Hi, this is a short sample of my voice. The dubbing workflow uses it to speak your script in another language.",
+     "description": "The exact words of the reference recording"
+    },
+    "script": {
+     "node_id": "6",
+     "input_name": "value",
+     "default": "Hola, esta es una breve muestra de mi voz. El flujo de doblaje la usa para decir tu guion en otro idioma.",
+     "description": "The translated text, under about 25 words"
+    },
+    "language": {
+     "node_id": "23",
+     "input_name": "language",
+     "default": "Spanish",
+     "description": "English, Chinese, Japanese, Korean, French, German, Spanish, Portuguese, Russian, Italian"
+    },
+    "size": {
+     "node_id": "7",
+     "input_name": "value",
+     "default": 640,
+     "description": "Square video size, multiple of 16"
+    },
+    "steps": {
+     "node_id": "24",
+     "input_name": "value",
+     "default": 20,
+     "description": "Sampler steps per part (20 full quality, 10 draft)"
+    },
+    "segment_frames": {
+     "node_id": "25",
+     "input_name": "value",
+     "default": 77,
+     "description": "Frames per part, 4n+1 (77 = 4.8 s at 16 fps)"
+    }
+   },
+   "expected_seconds": 600,
+   "smoke_overrides": {
+    "script": "Hola.",
+    "size": 320,
+    "steps": 2,
+    "segment_frames": 13
+   },
+   "challenge": "Localisation & dubbing"
+  },
+  {
+   "slug": "product-shot",
+   "title": "Product shot",
+   "track": "block",
+   "summary": "A product image from text, optionally keeping a real product.",
+   "ui_path": "workflows/ui/product-shot.json",
+   "api_path": "workflows/api/product-shot.json",
+   "inputs": {
+    "prompt": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "A glass bottle of cold brew coffee on a marble counter, morning light, premium product photography",
+     "description": "What the image shows"
+    },
+    "product_photo": {
+     "node_id": "2",
+     "input_name": "image",
+     "default": "remangu-placeholder.png",
+     "description": "Uploaded image name"
+    },
+    "use_product_photo": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": false,
+     "description": "true to keep the uploaded product"
+    },
+    "width": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": 1024,
+     "description": "Width, multiple of 16"
+    },
+    "height": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": 1024,
+     "description": "Height, multiple of 16"
+    }
+   },
+   "expected_seconds": 15,
+   "smoke_overrides": {
+    "width": 256,
+    "height": 256
+   },
+   "challenge": "Building blocks"
+  },
+  {
+   "slug": "image-to-video",
+   "title": "Image to video",
+   "track": "block",
+   "summary": "One image in, a 5-second clip out (Wan2.2 14B).",
+   "ui_path": "workflows/ui/image-to-video.json",
+   "api_path": "workflows/api/image-to-video.json",
+   "inputs": {
+    "image": {
+     "node_id": "1",
+     "input_name": "image",
+     "default": "remangu-sample-image.jpg",
+     "description": "Uploaded image name"
+    },
+    "prompt": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": "Slow cinematic camera push-in on the subject, a light breeze moves the grass, warm sun flare. The subject stays in place. No text appears.",
+     "description": "The motion to add"
+    },
+    "width": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": 1280,
+     "description": "Width, multiple of 16"
+    },
+    "height": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": 720,
+     "description": "Height, multiple of 16"
+    },
+    "frames": {
+     "node_id": "5",
+     "input_name": "value",
+     "default": 81,
+     "description": "4n+1 frames at 16 fps"
+    }
+   },
+   "expected_seconds": 120,
+   "smoke_overrides": {
+    "width": 320,
+    "height": 192,
+    "frames": 9
+   },
+   "challenge": "Building blocks"
+  },
+  {
+   "slug": "text-to-video",
+   "title": "Text to video",
+   "track": "block",
+   "summary": "A description in, a 5-second clip out (Wan2.2 5B).",
+   "ui_path": "workflows/ui/text-to-video.json",
+   "api_path": "workflows/api/text-to-video.json",
+   "inputs": {
+    "prompt": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "Aerial view gliding low over a mountain lake at sunrise, the camera moves forward steadily, mist drifting across the water, cinematic",
+     "description": "What the clip shows"
+    },
+    "width": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": 1280,
+     "description": "Width, multiple of 32"
+    },
+    "height": {
+     "node_id": "3",
+     "input_name": "value",
+     "default": 704,
+     "description": "Height, multiple of 32"
+    },
+    "frames": {
+     "node_id": "4",
+     "input_name": "value",
+     "default": 121,
+     "description": "4n+1 frames at 24 fps"
+    }
+   },
+   "expected_seconds": 150,
+   "smoke_overrides": {
+    "width": 256,
+    "height": 256,
+    "frames": 9
+   },
+   "challenge": "Building blocks"
+  },
+  {
+   "slug": "music",
+   "title": "Music",
+   "track": "block",
+   "summary": "A music track from a text description (Stable Audio 3 Medium).",
+   "ui_path": "workflows/ui/music.json",
+   "api_path": "workflows/api/music.json",
+   "inputs": {
+    "prompt": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "Upbeat indie pop instrumental with bright guitars and claps, 120 BPM, feel-good",
+     "description": "Genre, instruments, tempo, mood"
+    },
+    "seconds": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": 30.0,
+     "description": "Length in seconds"
+    }
+   },
+   "expected_seconds": 30,
+   "smoke_overrides": {
+    "seconds": 1.0
+   },
+   "challenge": "Building blocks"
+  },
+  {
+   "slug": "sound-effects",
+   "title": "Sound effects",
+   "track": "block",
+   "summary": "A sound effect from a text description (Stable Audio 3 SFX).",
+   "ui_path": "workflows/ui/sound-effects.json",
+   "api_path": "workflows/api/sound-effects.json",
+   "inputs": {
+    "prompt": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "Soda can opening with a crisp fizz",
+     "description": "The sound to make"
+    },
+    "seconds": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": 4.0,
+     "description": "Length in seconds"
+    }
+   },
+   "expected_seconds": 10,
+   "smoke_overrides": {
+    "seconds": 1.0
+   },
+   "challenge": "Building blocks"
+  },
+  {
+   "slug": "voice-over",
+   "title": "Voice-over",
+   "track": "block",
+   "summary": "Text in, a spoken voice-over out (Qwen3-TTS 1.7B).",
+   "ui_path": "workflows/ui/voice-over.json",
+   "api_path": "workflows/api/voice-over.json",
+   "inputs": {
+    "script": {
+     "node_id": "1",
+     "input_name": "value",
+     "default": "Introducing the new Ridge trail shoe. Built for the climb, made for the view.",
+     "description": "The words to speak"
+    },
+    "voice_style": {
+     "node_id": "2",
+     "input_name": "value",
+     "default": "Deep, calm, cinematic trailer voice",
+     "description": "How to say them"
+    },
+    "speaker": {
+     "node_id": "3",
+     "input_name": "speaker",
+     "default": "Ryan",
+     "description": "Ryan, Aiden, Dylan, Eric, Serena, Vivian, ..."
+    },
+    "language": {
+     "node_id": "3",
+     "input_name": "language",
+     "default": "English",
+     "description": "English, Chinese, Japanese, Korean, French, German, Spanish, Portuguese, Russian, Italian"
+    }
+   },
+   "expected_seconds": 15,
+   "smoke_overrides": {
+    "script": "Hello."
+   },
+   "challenge": "Building blocks"
+  },
+  {
+   "slug": "upscale-4x",
+   "title": "Upscale 4×",
+   "track": "block",
+   "summary": "Any image in, four times the resolution out (Real-ESRGAN).",
+   "ui_path": "workflows/ui/upscale-4x.json",
+   "api_path": "workflows/api/upscale-4x.json",
+   "inputs": {
+    "image": {
+     "node_id": "1",
+     "input_name": "image",
+     "default": "remangu-sample-image.jpg",
+     "description": "Uploaded image name"
+    }
+   },
+   "expected_seconds": 5,
+   "smoke_overrides": {},
+   "challenge": "Building blocks"
+  }
+ ]
+}

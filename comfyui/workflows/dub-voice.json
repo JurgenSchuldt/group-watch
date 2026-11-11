@@ -1,0 +1,75 @@
+{
+ "1": {
+  "class_type": "LoadAudio",
+  "inputs": {
+   "audio": "remangu-reference-voice.wav"
+  },
+  "_meta": {
+   "title": "Reference voice (5-15 s, clean)"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Hi, this is a short sample of my voice. The dubbing workflow uses it to speak your script in another language."
+  },
+  "_meta": {
+   "title": "Reference text (what the reference says)"
+  }
+ },
+ "3": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Hola, esta es una breve muestra de mi voz. El flujo de doblaje la usa para decir tu guion en otro idioma."
+  },
+  "_meta": {
+   "title": "Translated script"
+  }
+ },
+ "4": {
+  "class_type": "FB_Qwen3TTSVoiceClone",
+  "inputs": {
+   "target_text": [
+    "3",
+    0
+   ],
+   "model_choice": "1.7B",
+   "device": "auto",
+   "precision": "bf16",
+   "language": "Spanish",
+   "ref_audio": [
+    "1",
+    0
+   ],
+   "ref_text": [
+    "2",
+    0
+   ],
+   "seed": 0,
+   "max_new_tokens": 2048,
+   "top_p": 1.0,
+   "top_k": 50,
+   "temperature": 0.9,
+   "repetition_penalty": 1.05,
+   "x_vector_only": false,
+   "instruct": "",
+   "attention": "auto",
+   "unload_model_after_generate": true,
+   "custom_model_path": ""
+  },
+  "_meta": {
+   "title": "Dubbed voice (Qwen3-TTS voice clone)"
+  }
+ },
+ "5": {
+  "class_type": "SaveAudioMP3",
+  "inputs": {
+   "audio": [
+    "4",
+    0
+   ],
+   "filename_prefix": "dubbing/voice",
+   "quality": "V0"
+  }
+ }
+}

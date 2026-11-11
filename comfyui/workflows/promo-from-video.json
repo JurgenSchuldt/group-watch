@@ -1,0 +1,917 @@
+{
+ "1": {
+  "class_type": "LoadVideo",
+  "inputs": {
+   "file": "remangu-sample-video.mp4"
+  },
+  "_meta": {
+   "title": "Source video"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 0.5
+  },
+  "_meta": {
+   "title": "Moment 1 (seconds)"
+  }
+ },
+ "3": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 2.5
+  },
+  "_meta": {
+   "title": "Moment 2 (seconds)"
+  }
+ },
+ "4": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 5.0
+  },
+  "_meta": {
+   "title": "Moment 3 (seconds)"
+  }
+ },
+ "5": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "A premium cold brew coffee, from a calm morning kitchen to a sunny day out. Fresh, upbeat"
+  },
+  "_meta": {
+   "title": "Brief"
+  }
+ },
+ "6": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Cold brew, made slow. From your first sip at home to every sunny afternoon. Take it with you."
+  },
+  "_meta": {
+   "title": "Voice-over script"
+  }
+ },
+ "7": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Warm, confident, upbeat commercial voice-over, medium pace"
+  },
+  "_meta": {
+   "title": "Voice style"
+  }
+ },
+ "8": {
+  "class_type": "PrimitiveBoolean",
+  "inputs": {
+   "value": true
+  },
+  "_meta": {
+   "title": "Use voice"
+  }
+ },
+ "9": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 1280
+  },
+  "_meta": {
+   "title": "Width"
+  }
+ },
+ "10": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 720
+  },
+  "_meta": {
+   "title": "Height"
+  }
+ },
+ "11": {
+  "class_type": "Video Slice",
+  "inputs": {
+   "video": [
+    "1",
+    0
+   ],
+   "start_time": [
+    "2",
+    0
+   ],
+   "duration": 0.25,
+   "strict_duration": false
+  }
+ },
+ "12": {
+  "class_type": "GetVideoComponents",
+  "inputs": {
+   "video": [
+    "11",
+    0
+   ]
+  }
+ },
+ "13": {
+  "class_type": "ImageFromBatch",
+  "inputs": {
+   "image": [
+    "12",
+    0
+   ],
+   "batch_index": 0,
+   "length": 1
+  },
+  "_meta": {
+   "title": "Moment 1"
+  }
+ },
+ "14": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "13",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": [
+    "9",
+    0
+   ],
+   "height": [
+    "10",
+    0
+   ],
+   "crop": "center"
+  }
+ },
+ "15": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "14",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key frame 1"
+  }
+ },
+ "16": {
+  "class_type": "Video Slice",
+  "inputs": {
+   "video": [
+    "1",
+    0
+   ],
+   "start_time": [
+    "3",
+    0
+   ],
+   "duration": 0.25,
+   "strict_duration": false
+  }
+ },
+ "17": {
+  "class_type": "GetVideoComponents",
+  "inputs": {
+   "video": [
+    "16",
+    0
+   ]
+  }
+ },
+ "18": {
+  "class_type": "ImageFromBatch",
+  "inputs": {
+   "image": [
+    "17",
+    0
+   ],
+   "batch_index": 0,
+   "length": 1
+  },
+  "_meta": {
+   "title": "Moment 2"
+  }
+ },
+ "19": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "18",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": [
+    "9",
+    0
+   ],
+   "height": [
+    "10",
+    0
+   ],
+   "crop": "center"
+  }
+ },
+ "20": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "19",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key frame 2"
+  }
+ },
+ "21": {
+  "class_type": "Video Slice",
+  "inputs": {
+   "video": [
+    "1",
+    0
+   ],
+   "start_time": [
+    "4",
+    0
+   ],
+   "duration": 0.25,
+   "strict_duration": false
+  }
+ },
+ "22": {
+  "class_type": "GetVideoComponents",
+  "inputs": {
+   "video": [
+    "21",
+    0
+   ]
+  }
+ },
+ "23": {
+  "class_type": "ImageFromBatch",
+  "inputs": {
+   "image": [
+    "22",
+    0
+   ],
+   "batch_index": 0,
+   "length": 1
+  },
+  "_meta": {
+   "title": "Moment 3"
+  }
+ },
+ "24": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "23",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": [
+    "9",
+    0
+   ],
+   "height": [
+    "10",
+    0
+   ],
+   "crop": "center"
+  }
+ },
+ "25": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "24",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key frame 3"
+  }
+ },
+ "26": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 81
+  },
+  "_meta": {
+   "title": "Frames per move (81 = 5 s)"
+  }
+ },
+ "27": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "5",
+    0
+   ],
+   "string_b": "Smooth cinematic camera push-in from the wide shot to the close-up",
+   "delimiter": ". "
+  }
+ },
+ "28": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+   "type": "wan",
+   "device": "default"
+  }
+ },
+ "29": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "wan_2.1_vae.safetensors"
+  }
+ },
+ "30": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "31": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "30",
+    0
+   ],
+   "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+   "strength_model": 1.0
+  }
+ },
+ "32": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "31",
+    0
+   ],
+   "shift": 5.0
+  }
+ },
+ "33": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "34": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "33",
+    0
+   ],
+   "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+   "strength_model": 1.0
+  }
+ },
+ "35": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "34",
+    0
+   ],
+   "shift": 5.0
+  }
+ },
+ "36": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走",
+   "clip": [
+    "28",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Negative prompt (Wan default)"
+  }
+ },
+ "37": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "27",
+    0
+   ],
+   "clip": [
+    "28",
+    0
+   ]
+  }
+ },
+ "38": {
+  "class_type": "WanFirstLastFrameToVideo",
+  "inputs": {
+   "positive": [
+    "37",
+    0
+   ],
+   "negative": [
+    "36",
+    0
+   ],
+   "vae": [
+    "29",
+    0
+   ],
+   "width": [
+    "9",
+    0
+   ],
+   "height": [
+    "10",
+    0
+   ],
+   "length": [
+    "26",
+    0
+   ],
+   "batch_size": 1,
+   "start_image": [
+    "14",
+    0
+   ],
+   "end_image": [
+    "19",
+    0
+   ]
+  }
+ },
+ "39": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "32",
+    0
+   ],
+   "add_noise": "enable",
+   "noise_seed": 11,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "38",
+    0
+   ],
+   "negative": [
+    "38",
+    1
+   ],
+   "latent_image": [
+    "38",
+    2
+   ],
+   "start_at_step": 0,
+   "end_at_step": 2,
+   "return_with_leftover_noise": "enable"
+  }
+ },
+ "40": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "35",
+    0
+   ],
+   "add_noise": "disable",
+   "noise_seed": 0,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "38",
+    0
+   ],
+   "negative": [
+    "38",
+    1
+   ],
+   "latent_image": [
+    "39",
+    0
+   ],
+   "start_at_step": 2,
+   "end_at_step": 10000,
+   "return_with_leftover_noise": "disable"
+  }
+ },
+ "41": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "40",
+    0
+   ],
+   "vae": [
+    "29",
+    0
+   ]
+  }
+ },
+ "42": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "5",
+    0
+   ],
+   "string_b": "Elegant camera move from the close-up to the final hero shot, soft light",
+   "delimiter": ". "
+  }
+ },
+ "43": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "42",
+    0
+   ],
+   "clip": [
+    "28",
+    0
+   ]
+  }
+ },
+ "44": {
+  "class_type": "WanFirstLastFrameToVideo",
+  "inputs": {
+   "positive": [
+    "43",
+    0
+   ],
+   "negative": [
+    "36",
+    0
+   ],
+   "vae": [
+    "29",
+    0
+   ],
+   "width": [
+    "9",
+    0
+   ],
+   "height": [
+    "10",
+    0
+   ],
+   "length": [
+    "26",
+    0
+   ],
+   "batch_size": 1,
+   "start_image": [
+    "19",
+    0
+   ],
+   "end_image": [
+    "24",
+    0
+   ]
+  }
+ },
+ "45": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "32",
+    0
+   ],
+   "add_noise": "enable",
+   "noise_seed": 22,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "44",
+    0
+   ],
+   "negative": [
+    "44",
+    1
+   ],
+   "latent_image": [
+    "44",
+    2
+   ],
+   "start_at_step": 0,
+   "end_at_step": 2,
+   "return_with_leftover_noise": "enable"
+  }
+ },
+ "46": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "35",
+    0
+   ],
+   "add_noise": "disable",
+   "noise_seed": 0,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "44",
+    0
+   ],
+   "negative": [
+    "44",
+    1
+   ],
+   "latent_image": [
+    "45",
+    0
+   ],
+   "start_at_step": 2,
+   "end_at_step": 10000,
+   "return_with_leftover_noise": "disable"
+  }
+ },
+ "47": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "46",
+    0
+   ],
+   "vae": [
+    "29",
+    0
+   ]
+  }
+ },
+ "48": {
+  "class_type": "ImageFromBatch",
+  "inputs": {
+   "image": [
+    "47",
+    0
+   ],
+   "batch_index": 1,
+   "length": 4096
+  }
+ },
+ "49": {
+  "class_type": "ImageBatch",
+  "inputs": {
+   "image1": [
+    "41",
+    0
+   ],
+   "image2": [
+    "48",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "All frames"
+  }
+ },
+ "50": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 10.0
+  },
+  "_meta": {
+   "title": "Ad length (seconds)"
+  }
+ },
+ "51": {
+  "class_type": "FB_Qwen3TTSCustomVoice",
+  "inputs": {
+   "text": [
+    "6",
+    0
+   ],
+   "speaker": "Ryan",
+   "model_choice": "1.7B",
+   "device": "auto",
+   "precision": "bf16",
+   "language": "English",
+   "seed": 0,
+   "instruct": [
+    "7",
+    0
+   ],
+   "max_new_tokens": 2048,
+   "top_p": 1.0,
+   "top_k": 50,
+   "temperature": 0.9,
+   "repetition_penalty": 1.05,
+   "attention": "auto",
+   "unload_model_after_generate": true,
+   "custom_model_path": "",
+   "custom_speaker_name": ""
+  },
+  "_meta": {
+   "title": "Voice-over (Qwen3-TTS)"
+  }
+ },
+ "52": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "5",
+    0
+   ],
+   "string_b": "instrumental music bed for a TV commercial, no vocals",
+   "delimiter": ". "
+  }
+ },
+ "53": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "stable_audio_3_medium.safetensors"
+  }
+ },
+ "54": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "t5gemma_b_b_ul2.safetensors",
+   "type": "stable_audio",
+   "device": "default"
+  }
+ },
+ "55": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "52",
+    0
+   ],
+   "clip": [
+    "54",
+    0
+   ]
+  }
+ },
+ "56": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "vocals, singing, speech, distortion, noise",
+   "clip": [
+    "54",
+    0
+   ]
+  }
+ },
+ "57": {
+  "class_type": "EmptyLatentAudio",
+  "inputs": {
+   "seconds": [
+    "50",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "58": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "53",
+    0
+   ],
+   "seed": 7,
+   "steps": 8,
+   "cfg": 1.0,
+   "sampler_name": "lcm",
+   "scheduler": "simple",
+   "positive": [
+    "55",
+    0
+   ],
+   "negative": [
+    "56",
+    0
+   ],
+   "latent_image": [
+    "57",
+    0
+   ],
+   "denoise": 1.0
+  }
+ },
+ "59": {
+  "class_type": "VAEDecodeAudio",
+  "inputs": {
+   "samples": [
+    "58",
+    0
+   ],
+   "vae": [
+    "53",
+    2
+   ]
+  }
+ },
+ "60": {
+  "class_type": "AudioAdjustVolume",
+  "inputs": {
+   "audio": [
+    "59",
+    0
+   ],
+   "volume": -12
+  },
+  "_meta": {
+   "title": "Music volume (dB)"
+  }
+ },
+ "61": {
+  "class_type": "AudioMerge",
+  "inputs": {
+   "audio1": [
+    "60",
+    0
+   ],
+   "audio2": [
+    "51",
+    0
+   ],
+   "merge_method": "add"
+  }
+ },
+ "62": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "8",
+    0
+   ],
+   "on_true": [
+    "61",
+    0
+   ],
+   "on_false": [
+    "59",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Voice or music only"
+  }
+ },
+ "63": {
+  "class_type": "TrimAudioDuration",
+  "inputs": {
+   "audio": [
+    "62",
+    0
+   ],
+   "start_index": 0.0,
+   "duration": [
+    "50",
+    0
+   ]
+  }
+ },
+ "64": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "49",
+    0
+   ],
+   "fps": 16.0,
+   "bit_depth": "auto",
+   "color_space": "sRGB",
+   "codec": "none",
+   "audio": [
+    "63",
+    0
+   ]
+  }
+ },
+ "65": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "64",
+    0
+   ],
+   "filename_prefix": "social/promo",
+   "format": "auto",
+   "codec": "auto",
+   "format.codec": "auto"
+  }
+ }
+}

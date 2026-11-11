@@ -1,0 +1,1340 @@
+{
+ "1": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "A lightweight trail running shoe for weekend explorers. Energetic, sunny, mountain trails at sunrise"
+  },
+  "_meta": {
+   "title": "Brief"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Meet Ridge. Light enough for every summit, tough enough for every trail. Your weekend starts the moment you lace up."
+  },
+  "_meta": {
+   "title": "Voice-over script"
+  }
+ },
+ "3": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Warm, confident, upbeat commercial voice-over, medium pace"
+  },
+  "_meta": {
+   "title": "Voice style"
+  }
+ },
+ "4": {
+  "class_type": "PrimitiveBoolean",
+  "inputs": {
+   "value": true
+  },
+  "_meta": {
+   "title": "Use voice"
+  }
+ },
+ "5": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "remangu-placeholder.png"
+  },
+  "_meta": {
+   "title": "Product photo (optional)"
+  }
+ },
+ "6": {
+  "class_type": "PrimitiveBoolean",
+  "inputs": {
+   "value": false
+  },
+  "_meta": {
+   "title": "Use product photo"
+  }
+ },
+ "7": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 1280
+  },
+  "_meta": {
+   "title": "Width"
+  }
+ },
+ "8": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 720
+  },
+  "_meta": {
+   "title": "Height"
+  }
+ },
+ "9": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "1",
+    0
+   ],
+   "string_b": "Opening shot, the product in its world, wide cinematic composition, natural light. No text, no lettering, no captions.",
+   "delimiter": ". "
+  }
+ },
+ "10": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "flux-2-klein-4b.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "11": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_3_4b.safetensors",
+   "type": "flux2",
+   "device": "default"
+  }
+ },
+ "12": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "flux2-vae.safetensors"
+  }
+ },
+ "13": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "9",
+    0
+   ],
+   "clip": [
+    "11",
+    0
+   ]
+  }
+ },
+ "14": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "13",
+    0
+   ]
+  }
+ },
+ "15": {
+  "class_type": "ImageScaleToTotalPixels",
+  "inputs": {
+   "image": [
+    "5",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "megapixels": 1.0,
+   "resolution_steps": 16
+  }
+ },
+ "16": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "15",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  }
+ },
+ "17": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "13",
+    0
+   ],
+   "latent": [
+    "16",
+    0
+   ]
+  }
+ },
+ "18": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "6",
+    0
+   ],
+   "on_true": [
+    "17",
+    0
+   ],
+   "on_false": [
+    "13",
+    0
+   ]
+  }
+ },
+ "19": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "14",
+    0
+   ],
+   "latent": [
+    "16",
+    0
+   ]
+  }
+ },
+ "20": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "6",
+    0
+   ],
+   "on_true": [
+    "19",
+    0
+   ],
+   "on_false": [
+    "14",
+    0
+   ]
+  }
+ },
+ "21": {
+  "class_type": "CFGGuider",
+  "inputs": {
+   "model": [
+    "10",
+    0
+   ],
+   "positive": [
+    "18",
+    0
+   ],
+   "negative": [
+    "20",
+    0
+   ],
+   "cfg": 1.0
+  }
+ },
+ "22": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "23": {
+  "class_type": "Flux2Scheduler",
+  "inputs": {
+   "steps": 4,
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ]
+  }
+ },
+ "24": {
+  "class_type": "KSamplerSelect",
+  "inputs": {
+   "sampler_name": "euler"
+  }
+ },
+ "25": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 101
+  }
+ },
+ "26": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "25",
+    0
+   ],
+   "guider": [
+    "21",
+    0
+   ],
+   "sampler": [
+    "24",
+    0
+   ],
+   "sigmas": [
+    "23",
+    0
+   ],
+   "latent_image": [
+    "22",
+    0
+   ]
+  }
+ },
+ "27": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "26",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key visual 1"
+  }
+ },
+ "28": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "6",
+    0
+   ],
+   "on_true": [
+    "5",
+    0
+   ],
+   "on_false": [
+    "27",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Product reference"
+  }
+ },
+ "29": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": "Detail shot of exactly the same product as in the reference image: new camera position, extreme macro close-up of its materials and details filling the frame, background fully out of focus. No text, no lettering, no captions.",
+   "string_b": [
+    "1",
+    0
+   ],
+   "delimiter": " Product and mood: "
+  }
+ },
+ "30": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "29",
+    0
+   ],
+   "clip": [
+    "11",
+    0
+   ]
+  }
+ },
+ "31": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "30",
+    0
+   ]
+  }
+ },
+ "32": {
+  "class_type": "ImageScaleToTotalPixels",
+  "inputs": {
+   "image": [
+    "28",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "megapixels": 1.0,
+   "resolution_steps": 16
+  }
+ },
+ "33": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "32",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  }
+ },
+ "34": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "30",
+    0
+   ],
+   "latent": [
+    "33",
+    0
+   ]
+  }
+ },
+ "35": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "31",
+    0
+   ],
+   "latent": [
+    "33",
+    0
+   ]
+  }
+ },
+ "36": {
+  "class_type": "CFGGuider",
+  "inputs": {
+   "model": [
+    "10",
+    0
+   ],
+   "positive": [
+    "34",
+    0
+   ],
+   "negative": [
+    "35",
+    0
+   ],
+   "cfg": 1.0
+  }
+ },
+ "37": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "38": {
+  "class_type": "Flux2Scheduler",
+  "inputs": {
+   "steps": 4,
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ]
+  }
+ },
+ "39": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 202
+  }
+ },
+ "40": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "39",
+    0
+   ],
+   "guider": [
+    "36",
+    0
+   ],
+   "sampler": [
+    "24",
+    0
+   ],
+   "sigmas": [
+    "38",
+    0
+   ],
+   "latent_image": [
+    "37",
+    0
+   ]
+  }
+ },
+ "41": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "40",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key visual 2"
+  }
+ },
+ "42": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": "Hero shot of exactly the same product as in the reference image: new camera position, low angle, the product large in the foreground against open sky, golden backlight, premium advertising look. No text, no lettering, no captions.",
+   "string_b": [
+    "1",
+    0
+   ],
+   "delimiter": " Product and mood: "
+  }
+ },
+ "43": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "42",
+    0
+   ],
+   "clip": [
+    "11",
+    0
+   ]
+  }
+ },
+ "44": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "43",
+    0
+   ]
+  }
+ },
+ "45": {
+  "class_type": "ImageScaleToTotalPixels",
+  "inputs": {
+   "image": [
+    "28",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "megapixels": 1.0,
+   "resolution_steps": 16
+  }
+ },
+ "46": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "45",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  }
+ },
+ "47": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "43",
+    0
+   ],
+   "latent": [
+    "46",
+    0
+   ]
+  }
+ },
+ "48": {
+  "class_type": "ReferenceLatent",
+  "inputs": {
+   "conditioning": [
+    "44",
+    0
+   ],
+   "latent": [
+    "46",
+    0
+   ]
+  }
+ },
+ "49": {
+  "class_type": "CFGGuider",
+  "inputs": {
+   "model": [
+    "10",
+    0
+   ],
+   "positive": [
+    "47",
+    0
+   ],
+   "negative": [
+    "48",
+    0
+   ],
+   "cfg": 1.0
+  }
+ },
+ "50": {
+  "class_type": "EmptyFlux2LatentImage",
+  "inputs": {
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "51": {
+  "class_type": "Flux2Scheduler",
+  "inputs": {
+   "steps": 4,
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ]
+  }
+ },
+ "52": {
+  "class_type": "RandomNoise",
+  "inputs": {
+   "noise_seed": 303
+  }
+ },
+ "53": {
+  "class_type": "SamplerCustomAdvanced",
+  "inputs": {
+   "noise": [
+    "52",
+    0
+   ],
+   "guider": [
+    "49",
+    0
+   ],
+   "sampler": [
+    "24",
+    0
+   ],
+   "sigmas": [
+    "51",
+    0
+   ],
+   "latent_image": [
+    "50",
+    0
+   ]
+  }
+ },
+ "54": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "53",
+    0
+   ],
+   "vae": [
+    "12",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key visual 3"
+  }
+ },
+ "55": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "27",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key visual 1"
+  }
+ },
+ "56": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "41",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key visual 2"
+  }
+ },
+ "57": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "54",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Key visual 3"
+  }
+ },
+ "58": {
+  "class_type": "PrimitiveInt",
+  "inputs": {
+   "value": 81
+  },
+  "_meta": {
+   "title": "Frames per move (81 = 5 s)"
+  }
+ },
+ "59": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "1",
+    0
+   ],
+   "string_b": "Slow continuous camera push-in from the wide shot to a macro close-up of the product. Only the camera moves; the product stays still. No people, no hands, no second product. No text.",
+   "delimiter": ". "
+  }
+ },
+ "60": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+   "type": "wan",
+   "device": "default"
+  }
+ },
+ "61": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "wan_2.1_vae.safetensors"
+  }
+ },
+ "62": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "63": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "62",
+    0
+   ],
+   "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+   "strength_model": 1.0
+  }
+ },
+ "64": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "63",
+    0
+   ],
+   "shift": 5.0
+  }
+ },
+ "65": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "66": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "65",
+    0
+   ],
+   "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+   "strength_model": 1.0
+  }
+ },
+ "67": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "66",
+    0
+   ],
+   "shift": 5.0
+  }
+ },
+ "68": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走",
+   "clip": [
+    "60",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Negative prompt (Wan default)"
+  }
+ },
+ "69": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "59",
+    0
+   ],
+   "clip": [
+    "60",
+    0
+   ]
+  }
+ },
+ "70": {
+  "class_type": "WanFirstLastFrameToVideo",
+  "inputs": {
+   "positive": [
+    "69",
+    0
+   ],
+   "negative": [
+    "68",
+    0
+   ],
+   "vae": [
+    "61",
+    0
+   ],
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ],
+   "length": [
+    "58",
+    0
+   ],
+   "batch_size": 1,
+   "start_image": [
+    "27",
+    0
+   ],
+   "end_image": [
+    "41",
+    0
+   ]
+  }
+ },
+ "71": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "64",
+    0
+   ],
+   "add_noise": "enable",
+   "noise_seed": 11,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "70",
+    0
+   ],
+   "negative": [
+    "70",
+    1
+   ],
+   "latent_image": [
+    "70",
+    2
+   ],
+   "start_at_step": 0,
+   "end_at_step": 2,
+   "return_with_leftover_noise": "enable"
+  }
+ },
+ "72": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "67",
+    0
+   ],
+   "add_noise": "disable",
+   "noise_seed": 0,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "70",
+    0
+   ],
+   "negative": [
+    "70",
+    1
+   ],
+   "latent_image": [
+    "71",
+    0
+   ],
+   "start_at_step": 2,
+   "end_at_step": 10000,
+   "return_with_leftover_noise": "disable"
+  }
+ },
+ "73": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "72",
+    0
+   ],
+   "vae": [
+    "61",
+    0
+   ]
+  }
+ },
+ "74": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "1",
+    0
+   ],
+   "string_b": "Slow continuous camera pull-back and drop to a low-angle hero shot of the product. Only the camera moves; the product stays still. No people, no hands, no second product. No text.",
+   "delimiter": ". "
+  }
+ },
+ "75": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "74",
+    0
+   ],
+   "clip": [
+    "60",
+    0
+   ]
+  }
+ },
+ "76": {
+  "class_type": "WanFirstLastFrameToVideo",
+  "inputs": {
+   "positive": [
+    "75",
+    0
+   ],
+   "negative": [
+    "68",
+    0
+   ],
+   "vae": [
+    "61",
+    0
+   ],
+   "width": [
+    "7",
+    0
+   ],
+   "height": [
+    "8",
+    0
+   ],
+   "length": [
+    "58",
+    0
+   ],
+   "batch_size": 1,
+   "start_image": [
+    "41",
+    0
+   ],
+   "end_image": [
+    "54",
+    0
+   ]
+  }
+ },
+ "77": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "64",
+    0
+   ],
+   "add_noise": "enable",
+   "noise_seed": 22,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "76",
+    0
+   ],
+   "negative": [
+    "76",
+    1
+   ],
+   "latent_image": [
+    "76",
+    2
+   ],
+   "start_at_step": 0,
+   "end_at_step": 2,
+   "return_with_leftover_noise": "enable"
+  }
+ },
+ "78": {
+  "class_type": "KSamplerAdvanced",
+  "inputs": {
+   "model": [
+    "67",
+    0
+   ],
+   "add_noise": "disable",
+   "noise_seed": 0,
+   "steps": 4,
+   "cfg": 1.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "76",
+    0
+   ],
+   "negative": [
+    "76",
+    1
+   ],
+   "latent_image": [
+    "77",
+    0
+   ],
+   "start_at_step": 2,
+   "end_at_step": 10000,
+   "return_with_leftover_noise": "disable"
+  }
+ },
+ "79": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "78",
+    0
+   ],
+   "vae": [
+    "61",
+    0
+   ]
+  }
+ },
+ "80": {
+  "class_type": "ImageFromBatch",
+  "inputs": {
+   "image": [
+    "79",
+    0
+   ],
+   "batch_index": 1,
+   "length": 4096
+  }
+ },
+ "81": {
+  "class_type": "ImageBatch",
+  "inputs": {
+   "image1": [
+    "73",
+    0
+   ],
+   "image2": [
+    "80",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "All frames"
+  }
+ },
+ "82": {
+  "class_type": "PrimitiveFloat",
+  "inputs": {
+   "value": 10.0
+  },
+  "_meta": {
+   "title": "Ad length (seconds)"
+  }
+ },
+ "83": {
+  "class_type": "FB_Qwen3TTSCustomVoice",
+  "inputs": {
+   "text": [
+    "2",
+    0
+   ],
+   "speaker": "Ryan",
+   "model_choice": "1.7B",
+   "device": "auto",
+   "precision": "bf16",
+   "language": "English",
+   "seed": 0,
+   "instruct": [
+    "3",
+    0
+   ],
+   "max_new_tokens": 2048,
+   "top_p": 1.0,
+   "top_k": 50,
+   "temperature": 0.9,
+   "repetition_penalty": 1.05,
+   "attention": "auto",
+   "unload_model_after_generate": true,
+   "custom_model_path": "",
+   "custom_speaker_name": ""
+  },
+  "_meta": {
+   "title": "Voice-over (Qwen3-TTS)"
+  }
+ },
+ "84": {
+  "class_type": "StringConcatenate",
+  "inputs": {
+   "string_a": [
+    "1",
+    0
+   ],
+   "string_b": "instrumental music bed for a TV commercial, no vocals",
+   "delimiter": ". "
+  }
+ },
+ "85": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "stable_audio_3_medium.safetensors"
+  }
+ },
+ "86": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "t5gemma_b_b_ul2.safetensors",
+   "type": "stable_audio",
+   "device": "default"
+  }
+ },
+ "87": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "84",
+    0
+   ],
+   "clip": [
+    "86",
+    0
+   ]
+  }
+ },
+ "88": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "vocals, singing, speech, distortion, noise",
+   "clip": [
+    "86",
+    0
+   ]
+  }
+ },
+ "89": {
+  "class_type": "EmptyLatentAudio",
+  "inputs": {
+   "seconds": [
+    "82",
+    0
+   ],
+   "batch_size": 1
+  }
+ },
+ "90": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "85",
+    0
+   ],
+   "seed": 7,
+   "steps": 8,
+   "cfg": 1.0,
+   "sampler_name": "lcm",
+   "scheduler": "simple",
+   "positive": [
+    "87",
+    0
+   ],
+   "negative": [
+    "88",
+    0
+   ],
+   "latent_image": [
+    "89",
+    0
+   ],
+   "denoise": 1.0
+  }
+ },
+ "91": {
+  "class_type": "VAEDecodeAudio",
+  "inputs": {
+   "samples": [
+    "90",
+    0
+   ],
+   "vae": [
+    "85",
+    2
+   ]
+  }
+ },
+ "92": {
+  "class_type": "AudioAdjustVolume",
+  "inputs": {
+   "audio": [
+    "91",
+    0
+   ],
+   "volume": -12
+  },
+  "_meta": {
+   "title": "Music volume (dB)"
+  }
+ },
+ "93": {
+  "class_type": "AudioMerge",
+  "inputs": {
+   "audio1": [
+    "92",
+    0
+   ],
+   "audio2": [
+    "83",
+    0
+   ],
+   "merge_method": "add"
+  }
+ },
+ "94": {
+  "class_type": "ComfySwitchNode",
+  "inputs": {
+   "switch": [
+    "4",
+    0
+   ],
+   "on_true": [
+    "93",
+    0
+   ],
+   "on_false": [
+    "91",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Voice or music only"
+  }
+ },
+ "95": {
+  "class_type": "TrimAudioDuration",
+  "inputs": {
+   "audio": [
+    "94",
+    0
+   ],
+   "start_index": 0.0,
+   "duration": [
+    "82",
+    0
+   ]
+  }
+ },
+ "96": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "81",
+    0
+   ],
+   "fps": 16.0,
+   "bit_depth": "auto",
+   "color_space": "sRGB",
+   "codec": "none",
+   "audio": [
+    "95",
+    0
+   ]
+  }
+ },
+ "97": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "96",
+    0
+   ],
+   "filename_prefix": "ads/ad",
+   "format": "auto",
+   "codec": "auto",
+   "format.codec": "auto"
+  }
+ }
+}

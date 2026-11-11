@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Group Watch</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px 0; background: #0b1220; font-family: "Segoe UI", Calibri, Arial, Helvetica, sans-serif; color: #1e293b; }
+  .slide { position: relative; width: 1280px; height: 720px; margin: 0 auto 40px auto; background: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.45); }
+  .slide::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(180deg, #ED7100, #01A88D); }
+  .slide::after { content: ""; position: absolute; right: -120px; top: -120px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(1,168,141,.16), rgba(1,168,141,0) 70%); }
+  .inner { position: relative; z-index: 1; height: 100%; padding: 52px 80px 48px 90px; }
+  h1 { margin: 0; font-size: 50px; line-height: 1.1; color: #0f172a; font-weight: 700; letter-spacing: -.5px; }
+  .rule { width: 90px; height: 6px; border-radius: 3px; background: #ED7100; margin: 18px 0 30px 0; }
+  .lead { font-size: 30px; color: #334155; margin: 0 0 30px 0; font-weight: 500; }
+  .cols { display: flex; gap: 32px; }
+  .card { flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 26px 32px; border-top: 6px solid #01A88D; }
+  .card.alt { border-top-color: #ED7100; }
+  .card h3 { margin: 0 0 14px 0; font-size: 26px; color: #0f172a; }
+  .card ul { margin: 0; padding: 0; list-style: none; }
+  .card li { position: relative; padding-left: 26px; margin: 0 0 12px 0; font-size: 23px; line-height: 1.4; color: #334155; }
+  .card li::before { content: ""; position: absolute; left: 0; top: 11px; width: 10px; height: 10px; border-radius: 50%; background: #01A88D; }
+  .card.alt li::before { background: #ED7100; }
+  .card li b { color: #0f172a; }
+
+  /* tablas */
+  table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 23px; }
+  th { background: #0f172a; color: #fff; text-align: left; padding: 14px 20px; font-weight: 600; font-size: 20px; }
+  th:first-child { border-top-left-radius: 12px; }
+  th:last-child { border-top-right-radius: 12px; }
+  td { padding: 14px 20px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; color: #334155; }
+  tr:last-child td:first-child { border-bottom-left-radius: 12px; }
+  tr:last-child td:last-child { border-bottom-right-radius: 12px; }
+  tr.hl td { background: #fff4e8; color: #0f172a; font-weight: 700; border-bottom-color: #fed7aa; }
+  td.num, th.num { text-align: center; }
+
+  .note { margin-top: 26px; background: #f0fdfa; border: 1px solid #99f6e4; border-left: 6px solid #01A88D; border-radius: 12px; padding: 18px 26px; font-size: 20px; line-height: 1.5; color: #334155; }
+  .note b.t { display: block; color: #0f172a; font-size: 21px; margin-bottom: 6px; }
+  .note p { margin: 0 0 6px 0; padding-left: 20px; text-indent: -14px; }
+  .note p::before { content: "• "; color: #01A88D; font-weight: bold; }
+  .note strong { color: #0f172a; }
+
+  .arch { padding: 0; background: #fff; }
+  .arch svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .slide.arch::before, .slide.arch::after { display: none; }
+
+  .side h4 { margin: 0 0 8px 0; font-size: 24px; color: #0f172a; }
+  .side ul { margin: 0 0 22px 0; padding: 0; list-style: none; }
+  .side li { position: relative; padding-left: 24px; margin-bottom: 6px; font-size: 22px; color: #334155; line-height: 1.35; }
+  .side li::before { content: ""; position: absolute; left: 0; top: 10px; width: 9px; height: 9px; border-radius: 50%; background: #ED7100; }
+  .side li.sub { padding-left: 24px; color: #0f766e; font-weight: 600; }
+  .side li.sub::before { display: none; }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="slide">
+  <div class="inner">
+    <h1>¿Qué hace Group Watch?</h1>
+    <div class="rule"></div>
+    <p class="lead">¿Qué ver cuando varias personas no tienen los mismos gustos?</p>
+    <div class="cols">
+      <div class="card">
+        <h3>Resultado:</h3>
+        <ul>
+          <li>Recomendación personalizada para grupos de 2 a 6 personas.</li>
+          <li>Maximiza la satisfacción de la persona menos satisfecha.</li>
+        </ul>
+      </div>
+      <div class="card alt">
+        <h3>¿Cómo?</h3>
+        <ul>
+          <li>Utiliza agentes de IA para evaluar decenas de películas candidatas.</li>
+          <li><b>Puntúa cada película desde la perspectiva de cada espectador.</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2: imagen sin cambios -->
+<section class="slide arch">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 710" font-family="Arial, Helvetica, sans-serif" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#232F3E"/></marker>
+  </defs>
+  <rect width="1400" height="710" fill="#ffffff"/>
+  <text x="30" y="38" font-size="26" font-weight="bold" fill="#232F3E">Group Watch · Arquitectura</text>
+  <text x="30" y="58" font-size="14" fill="#5f6b7a">Recomendador de película para un grupo con agentes LLM y comparativa ciega</text>
+
+  <rect x="30" y="330" width="150" height="70" rx="8" fill="#f2f3f3" stroke="#232F3E"/>
+  <text x="105" y="361" font-size="15" font-weight="bold" fill="#232F3E" text-anchor="middle">Usuario</text>
+  <text x="105" y="381" font-size="12" fill="#5f6b7a" text-anchor="middle">Navegador (pestaña)</text>
+  <line x1="180" y1="365" x2="232" y2="365" stroke="#232F3E" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="210" y="75" width="725" height="570" rx="6" fill="#fbfcfc" stroke="#00A1C9" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="224" y="97" font-size="14" font-weight="bold" fill="#007fa3">Región us-east-2 (Ohio)</text>
+
+  <rect x="232" y="330" width="90" height="70" rx="8" fill="#8C4FFF"/>
+  <text x="277" y="360" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">CloudFront</text>
+  <text x="277" y="378" font-size="11" fill="#fff" text-anchor="middle">proxy :8765</text>
+  <line x1="322" y1="365" x2="350" y2="365" stroke="#232F3E" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="350" y="110" width="340" height="450" rx="8" fill="#fff" stroke="#ED7100" stroke-width="2"/>
+  <rect x="350" y="110" width="340" height="30" rx="8" fill="#ED7100"/>
+  <text x="520" y="131" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">Amazon EC2 · estación del equipo (Python)</text>
+
+  <g font-size="12" fill="#232F3E">
+    <rect x="362" y="150" width="316" height="68" rx="6" fill="#fef3e6" stroke="#ED7100"/>
+    <text x="374" y="171" font-weight="bold">index.html · interfaz web</text>
+    <text x="374" y="189">Elegir espectadores y deseos, ver ranking,</text>
+    <text x="374" y="205">comparativa y coste</text>
+
+    <rect x="362" y="230" width="316" height="68" rx="6" fill="#fef3e6" stroke="#ED7100"/>
+    <text x="374" y="251" font-weight="bold">server.py · API HTTP</text>
+    <text x="374" y="269">Trabajos en segundo plano, caché de resultados,</text>
+    <text x="374" y="285">medidor de coste por petición</text>
+
+    <rect x="362" y="310" width="316" height="68" rx="6" fill="#fef3e6" stroke="#ED7100"/>
+    <text x="374" y="331" font-weight="bold">agent.py · recomendación</text>
+    <text x="374" y="349">Intención → 50 candidatas → un agente por</text>
+    <text x="374" y="365">espectador → ranking con veto → explicación</text>
+
+    <rect x="362" y="390" width="316" height="68" rx="6" fill="#fef3e6" stroke="#ED7100"/>
+    <text x="374" y="411" font-weight="bold">arena.py · comparativa ciega</text>
+    <text x="374" y="429">Jueces puntúan top-3 de Group Watch, IMDb</text>
+    <text x="374" y="445">y TF-IDF sin saber quién es quién</text>
+
+    <rect x="362" y="470" width="316" height="68" rx="6" fill="#fef3e6" stroke="#ED7100"/>
+    <text x="374" y="491" font-weight="bold">recsys.py · catálogo local</text>
+    <text x="374" y="509">Películas reales con IMDb (comprimido),</text>
+    <text x="374" y="525">TF-IDF y ranking IMDb de referencia</text>
+  </g>
+  <text x="520" y="553" font-size="11" fill="#5f6b7a" text-anchor="middle">Credenciales del rol de la instancia (sin claves en código)</text>
+
+  <rect x="745" y="120" width="170" height="75" rx="8" fill="#7AA116"/>
+  <text x="830" y="148" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">Amazon S3</text>
+  <text x="830" y="167" font-size="11" fill="#fff" text-anchor="middle">Audience 360: perfiles</text>
+  <text x="830" y="182" font-size="11" fill="#fff" text-anchor="middle">y segmentos (sintéticos)</text>
+  <path d="M690 270 H708 V157 H745" fill="none" stroke="#232F3E" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="960" y="75" width="410" height="410" rx="6" fill="#fbfcfc" stroke="#00A1C9" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="974" y="97" font-size="14" font-weight="bold" fill="#007fa3">Región us-east-1 (N. Virginia)</text>
+  <rect x="980" y="112" width="370" height="360" rx="8" fill="#fff" stroke="#01A88D" stroke-width="2"/>
+  <rect x="980" y="112" width="370" height="30" rx="8" fill="#01A88D"/>
+  <text x="1165" y="133" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">Amazon Bedrock · Converse API</text>
+  <g font-size="12" fill="#232F3E">
+    <rect x="995" y="155" width="340" height="88" rx="6" fill="#e6f7f4" stroke="#01A88D"/>
+    <text x="1007" y="177" font-weight="bold">Claude Haiku 4.5</text>
+    <text x="1007" y="196">Entiende el perfil y el deseo de cada espectador</text>
+    <text x="1007" y="212">y propone películas puente (curador)</text>
+
+    <rect x="995" y="255" width="340" height="100" rx="6" fill="#e6f7f4" stroke="#01A88D"/>
+    <text x="1007" y="277" font-weight="bold">Claude Sonnet 4.5</text>
+    <text x="1007" y="296">Un agente por espectador puntúa las 50 candidatas</text>
+    <text x="1007" y="312">(solo ve su perfil) y explica la elección</text>
+    <text x="1007" y="328">del grupo</text>
+
+    <rect x="995" y="367" width="340" height="88" rx="6" fill="#e6f7f4" stroke="#01A88D"/>
+    <text x="1007" y="389" font-weight="bold">Amazon Nova Pro</text>
+    <text x="1007" y="408">Jueces ciegos de la comparativa: otra familia de</text>
+    <text x="1007" y="424">modelos, para que la evaluación no sea circular</text>
+  </g>
+  <g stroke="#232F3E" stroke-width="2" fill="none" marker-end="url(#a)">
+    <path d="M690 345 H980"/>
+    <path d="M690 365 H980"/>
+    <path d="M690 385 H980"/>
+  </g>
+  <text x="840" y="338" font-size="11" fill="#232F3E" text-anchor="middle">Converse API (paralelo)</text>
+
+  <rect x="980" y="540" width="370" height="90" rx="8" fill="#f2f3f3" stroke="#232F3E" stroke-dasharray="5 4"/>
+  <text x="1165" y="572" font-size="14" font-weight="bold" fill="#232F3E" text-anchor="middle">Servicios externos (internet)</text>
+  <text x="1165" y="594" font-size="12" fill="#5f6b7a" text-anchor="middle">TMDB / Wikidata</text>
+  <text x="1165" y="612" font-size="12" fill="#5f6b7a" text-anchor="middle">Pósteres de las películas</text>
+  <path d="M520 560 V600 H960 V585 H980" fill="none" stroke="#232F3E" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a)"/>
+
+  <rect x="30" y="662" width="1340" height="34" rx="6" fill="#232F3E"/>
+  <text x="700" y="684" font-size="13" fill="#fff" text-anchor="middle">1 Elegir espectadores   →   2 Recomendar (agentes en Bedrock)   →   3 Comparar con IMDb y TF-IDF (jueces ciegos)</text>
+</svg>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="inner">
+    <h1>¿Cómo lo medimos?</h1>
+    <div class="rule"></div>
+    <svg viewBox="0 0 1100 520" width="1100" height="520" style="display:block;margin:-6px auto 0 auto;" font-family="Segoe UI, Calibri, Arial, sans-serif">
+      <defs>
+        <marker id="arr" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#4f81bd"/></marker>
+      </defs>
+      <!-- usuarios -->
+      <rect x="395" y="10" width="140" height="52" rx="26" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+      <text x="465" y="43" font-size="22" font-weight="600" fill="#0c4a6e" text-anchor="middle">User 1</text>
+      <rect x="565" y="10" width="140" height="52" rx="26" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+      <text x="635" y="43" font-size="22" font-weight="600" fill="#0c4a6e" text-anchor="middle">User 2</text>
+      <!-- flechas usuarios -> sistemas -->
+      <g stroke="#4f81bd" stroke-width="3" fill="none" marker-end="url(#arr)">
+        <path d="M520 70 L190 168"/>
+        <path d="M550 70 L550 166"/>
+        <path d="M580 70 L910 168"/>
+      </g>
+      <!-- sistemas -->
+      <rect x="80" y="175" width="220" height="64" rx="14" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+      <text x="190" y="216" font-size="25" font-weight="600" fill="#334155" text-anchor="middle">IMDB</text>
+      <rect x="440" y="175" width="220" height="64" rx="14" fill="#fff4e8" stroke="#ED7100" stroke-width="3"/>
+      <text x="550" y="216" font-size="25" font-weight="700" fill="#9a3412" text-anchor="middle">Group Watch</text>
+      <rect x="800" y="175" width="220" height="64" rx="14" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+      <text x="910" y="216" font-size="25" font-weight="600" fill="#334155" text-anchor="middle">TF-IDF</text>
+      <!-- sistemas -> jueces -->
+      <g stroke="#4f81bd" stroke-width="3" fill="none" marker-end="url(#arr)">
+        <path d="M200 246 L510 392"/>
+        <path d="M550 246 L550 388"/>
+        <path d="M900 246 L590 392"/>
+      </g>
+      <!-- jueces LLM -->
+      <rect x="395" y="400" width="140" height="64" rx="14" fill="#e6f7f4" stroke="#01A88D" stroke-width="2"/>
+      <text x="465" y="440" font-size="22" font-weight="600" fill="#0f766e" text-anchor="middle">LLM user 1</text>
+      <rect x="565" y="400" width="140" height="64" rx="14" fill="#e6f7f4" stroke="#01A88D" stroke-width="2"/>
+      <text x="635" y="440" font-size="22" font-weight="600" fill="#0f766e" text-anchor="middle">LLM user 2</text>
+    </svg>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="inner">
+    <h1>¿Cómo lo medimos?</h1>
+    <div class="rule"></div>
+    <table>
+      <tr><th>Sistema</th><th class="num">Media de medias</th><th class="num">Media del peor espectador</th><th class="num">Media de ajuste (fit)</th></tr>
+      <tr class="hl"><td>Group Watch</td><td class="num">63,1</td><td class="num">51,3</td><td class="num">57,2</td></tr>
+      <tr><td>IMDb</td><td class="num">54,5</td><td class="num">40,4</td><td class="num">47,5</td></tr>
+      <tr><td>TF-IDF</td><td class="num">52,6</td><td class="num">37,5</td><td class="num">45,1</td></tr>
+    </table>
+    <div class="note">
+      <b class="t">Veces que Group Watch es el mejor:</b>
+      <p>Gana claramente en <strong>53 de 100 casos (53 %)</strong>.</p>
+      <p>Si cuento también los empates técnicos (diferencia de fit de 3 puntos o menos), es el mejor o empata en <strong>64 de 100 (64 %)</strong>.</p>
+      <p>Las 36 veces restantes ganan IMDb (14 victorias, 7 empates) o TF-IDF (7 victorias, 8 empates).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="inner">
+    <h1>Costes estimados del proyecto</h1>
+    <div class="rule"></div>
+    <div style="display:flex;gap:56px;align-items:flex-start;">
+      <div style="flex:1.05;">
+        <table>
+          <tr><th>Concepto</th><th>Coste</th></tr>
+          <tr><td>Petición de recomendación</td><td>~0,25 $ → <b style="color:#0f766e">0,10 $</b></td></tr>
+          <tr><td>Cuenta al mes (8 recomendaciones)</td><td>~2 $</td></tr>
+          <tr class="hl"><td>Total estimado cuenta/mes</td><td>~3 $</td></tr>
+        </table>
+      </div>
+      <div class="side" style="flex:1;">
+        <h4>Desglose recomendación</h4>
+        <ul>
+          <li>Claude Sonnet 4.5: ~0,20 $</li>
+          <li class="sub">Haiku → ~0,10 $</li>
+          <li>Explicaciones: ~0,02 $</li>
+          <li>Arena Nova Pro: ~0,03 $</li>
+        </ul>
+        <h4>Supuestos</h4>
+        <ul>
+          <li>Grupo de 4 espectadores</li>
+          <li>48 películas evaluadas</li>
+        </ul>
+        <h4>Rango de uso</h4>
+        <ul>
+          <li>Ligero: ~0,75 $/mes</li>
+          <li>Intensivo: ~8 $/mes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

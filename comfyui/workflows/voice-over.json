@@ -1,0 +1,62 @@
+{
+ "1": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Introducing the new Ridge trail shoe. Built for the climb, made for the view."
+  },
+  "_meta": {
+   "title": "Script"
+  }
+ },
+ "2": {
+  "class_type": "PrimitiveStringMultiline",
+  "inputs": {
+   "value": "Deep, calm, cinematic trailer voice"
+  },
+  "_meta": {
+   "title": "Voice style"
+  }
+ },
+ "3": {
+  "class_type": "FB_Qwen3TTSCustomVoice",
+  "inputs": {
+   "text": [
+    "1",
+    0
+   ],
+   "speaker": "Ryan",
+   "model_choice": "1.7B",
+   "device": "auto",
+   "precision": "bf16",
+   "language": "English",
+   "seed": 0,
+   "instruct": [
+    "2",
+    0
+   ],
+   "max_new_tokens": 2048,
+   "top_p": 1.0,
+   "top_k": 50,
+   "temperature": 0.9,
+   "repetition_penalty": 1.05,
+   "attention": "auto",
+   "unload_model_after_generate": true,
+   "custom_model_path": "",
+   "custom_speaker_name": ""
+  },
+  "_meta": {
+   "title": "Voice-over (Qwen3-TTS)"
+  }
+ },
+ "4": {
+  "class_type": "SaveAudioMP3",
+  "inputs": {
+   "audio": [
+    "3",
+    0
+   ],
+   "filename_prefix": "audio/voice",
+   "quality": "V0"
+  }
+ }
+}
